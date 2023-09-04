@@ -5,12 +5,26 @@
   align-items: center;
 }
 
+.buttonContainer {
+  margin-left: 25%;
+  margin-top: 1vh;
+  margin-bottom: -1vh;
+}
+
+.univButton {
+  width: 5vw;
+  height: 4vh;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 15px;
+}
+
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh - 20vh);
+  height: calc(100vh - 25vh);
   gap: 5vh;
 }
 
@@ -33,7 +47,7 @@
 .mobileunderAd {
   width: 100vh;
   height: 10vh;
-  margin-top: -2vh;
+  /* margin-top: -2vh; */
   background-color: yellow;
 }
 
