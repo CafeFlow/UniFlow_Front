@@ -1,15 +1,25 @@
 .container {
   display: flex;
+  align-items: center;
   width: 100%;
   height: 10vh;
   border-bottom: 1px solid lightgray;
+  gap: 1%;
 }
 
 .name {
   display: flex;
   align-items: center;
-  margin-left: 10%;
+  /* margin-left: 10%; */
   font-size: 1.5rem;
+  /* font-family: "Jalnan", sans-serif; */
+  color: #046eed;
+}
+
+.logo {
+  width: 2vw;
+  height: 4vh;
+  margin-left: 10%;
 }
 
 @media (max-width: 768px) {
@@ -18,12 +28,18 @@
     width: 100%;
     height: 10vh;
     border-bottom: 1px solid lightgray;
+    gap: 1%;
   }
 
   .name {
     display: flex;
     align-items: center;
-    margin-left: 10%;
+    margin-left: 2%;
     font-size: 1.5rem;
+  }
+
+  .logo {
+    width: 8vw;
+    margin-left: 5%;
   }
 }
