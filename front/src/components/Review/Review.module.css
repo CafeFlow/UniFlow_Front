@@ -1,0 +1,47 @@
+.bigContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 25vh);
+  gap: 5vh;
+}
+
+.center {
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  width: 100vh;
+  height: 70vh;
+  border: 1px solid lightgray;
+}
+
+.review {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 70%; /* 추가: review의 전체 너비 설정. 원하는 너비로 조절 가능 */
+  height: 3vh;
+  padding: 0 5%; /* 추가: 좌우 패딩을 줘서 카페명과 평점 사이에 간격을 주기 */
+}
+
+.leftAd,
+.rightAd {
+  width: 30vh;
+  height: 70vh;
+  background-color: yellow;
+}
+
+.mobileunderAd {
+  width: 50vw;
+  height: 10vh;
+  /* margin-top: -2vh; */
+  background-color: yellow;
+}

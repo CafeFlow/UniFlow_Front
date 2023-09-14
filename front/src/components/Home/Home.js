@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-
-import { markerdata } from "../Data/markerData.js";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import cafeflowLogo from "../icons/cafeflowLogo.png";
+import { API_URL } from "../Constant.js";
 import styles from "./Home.module.css";
 
 const { kakao } = window;
@@ -11,51 +13,123 @@ const Home = () => {
     lng: 127.074055,
   });
 
-  const [selectedButton, setSelectedButton] = useState(null);
+  const navigate = useNavigate();
+
+  const navigateToReview = () => {
+    console.log("asd");
+    navigate("/review");
+  };
+
+  const [selectedButton, setSelectedButton] = useState("세종대");
 
   useEffect(() => {
     const container = document.getElementById("map");
     const options = {
       center: new kakao.maps.LatLng(center.lat, center.lng),
-      level: center.level,
+      level: 4,
     };
 
     const map = new kakao.maps.Map(container, options);
 
-    markerdata.forEach((element) => {
-      const marker = new kakao.maps.Marker({
-        map: map,
-        position: new kakao.maps.LatLng(element.lat, element.lng),
-        title: element.title,
-      });
+    // axios로 가져온 데이터로 마커 생성
+    axios
+      .get(`${API_URL}/view-map`)
+      .then((response) => {
+        const data = response.data;
 
-      const overlay = new kakao.maps.CustomOverlay({
-        content: element.overlayContent,
-        map: map,
-        position: marker.getPosition(),
-      });
+        data.forEach((element) => {
+          const marker = new kakao.maps.Marker({
+            map: map,
+            position: new kakao.maps.LatLng(element.xmap, element.ymap),
+            title: element.name,
+          });
 
-      // 처음에는 오버레이를 보이지 않게 설정
-      overlay.setMap(null);
+          const overlayContent = `
+    <div class="${styles.overlayContainer}">
+      <div class="${styles.logoContainer}">
+        <img class="${styles.logo}" src=${cafeflowLogo} />
+        <div class="${styles.cafenameContainer}">
+          <h3 class="${styles.CafeName}">${element.name}</h3>
+          <span class="${styles.theme}">카페, 스터디</span>
+        </div>
+      </div>
+      <div>
+        <h3 class="${styles.seat}">좌석</h3>
+        <p class="${styles.count}">${element.count} / 45</p>
+        <button id="btn_${element.name}" class="${styles.detailButton}">자세히 알아보기</button>
+      </div>
+    <div>
+`;
 
-      kakao.maps.event.addListener(marker, "click", function () {
-        // 마커 클릭시 오버레이 표시
-        overlay.setMap(map);
-      });
+          {
+            /* <h3 class="${styles.location}">위치</h3>
+        <p class="${styles.address}">${element.address}</p> */
+          }
 
-      kakao.maps.event.addListener(map, "click", function () {
-        // 지도 클릭시 오버레이 숨김
-        overlay.setMap(null);
+          const overlay = new kakao.maps.CustomOverlay({
+            content: overlayContent,
+            map: map,
+            position: marker.getPosition(),
+          });
+
+          overlay.setMap(null);
+
+          kakao.maps.event.addListener(marker, "click", function () {
+            overlay.setMap(map);
+            setTimeout(() => {
+              const button = document.getElementById(`btn_${element.name}`);
+              if (button) {
+                button.addEventListener("click", navigateToReview);
+              }
+              const detailButton = document.getElementById("detail_button");
+              if (detailButton) {
+                detailButton.addEventListener("click", navigateToReview);
+              }
+            }, 0);
+          });
+
+          // 지도를 클릭하면 오버레이가 꺼지는 개념인데, 이것을 설정하게 되면 리뷰페이지로 이동이 안됨
+
+          // kakao.maps.event.addListener(map, "click", function () {
+          //   overlay.setMap(null);
+          // });
+
+          kakao.maps.event.addListener(marker, "click", function () {
+            overlay.setMap(map);
+            setTimeout(() => {
+              const button = document.getElementById(`btn_${element.name}`);
+              if (button) {
+                button.addEventListener("click", navigateToReview);
+              }
+            }, 0);
+          });
+        });
+      })
+      .catch((error) => {
+        console.error(error);
       });
-    });
   }, [center]);
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/view-map`)
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <>
       <div className={styles.buttonContainer}>
         <button
           style={{
             marginRight: "10px",
-            backgroundColor: selectedButton === "세종대" ? "#C9C3F7" : "",
+            backgroundColor: selectedButton === "세종대" ? "white" : "#046EED",
+            color: selectedButton === "세종대" ? "#046EED" : "white",
           }}
           className={styles.univButton}
           onClick={() => {
@@ -63,11 +137,12 @@ const Home = () => {
             setSelectedButton("세종대"); // 선택된 버튼 업데이트
           }}
         >
-          세종대
+          <p>세종대</p>
         </button>
         <button
           style={{
-            backgroundColor: selectedButton === "건국대" ? "#C9C3F7" : "",
+            backgroundColor: selectedButton === "건국대" ? "white" : "#046EED",
+            color: selectedButton === "건국대" ? "#046EED" : "white",
           }}
           className={styles.univButton}
           onClick={() => {
@@ -75,7 +150,7 @@ const Home = () => {
             setSelectedButton("건국대"); // 선택된 버튼 업데이트
           }}
         >
-          건국대
+          <p>건국대</p>
         </button>
       </div>
       <div className={styles.bigContainer}>
