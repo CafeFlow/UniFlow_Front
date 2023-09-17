@@ -137,12 +137,11 @@ const Home = () => {
             setSelectedButton("세종대"); // 선택된 버튼 업데이트
           }}
         >
-          <p>세종대</p>
+          <p>하이대123</p>
         </button>
         <button
           style={{
             backgroundColor: selectedButton === "건국대" ? "white" : "#046EED",
-            color: selectedButton === "건국대" ? "#046EED" : "white",
           }}
           className={styles.univButton}
           onClick={() => {
@@ -151,6 +150,7 @@ const Home = () => {
           }}
         >
           <p>건국대</p>
+          <p>hello</p>
         </button>
       </div>
       <div className={styles.bigContainer}>
