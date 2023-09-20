@@ -137,7 +137,7 @@ const Home = () => {
             setSelectedButton("세종대"); // 선택된 버튼 업데이트
           }}
         >
-          <p>vvvcssscccv</p>
+          <p>123</p>
         </button>
         <button
           style={{
