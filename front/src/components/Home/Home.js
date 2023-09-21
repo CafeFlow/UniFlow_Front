@@ -150,7 +150,7 @@ const Home = () => {
             setSelectedButton("건국대"); // 선택된 버튼 업데이트
           }}
         >
-          <p>건국대</p>
+          <p>djjdklkk</p>
         </button>
       </div>
       <div className={styles.bigContainer}>
