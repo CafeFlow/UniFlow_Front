@@ -138,6 +138,26 @@
     align-items: center;
   }
 
+  .title {
+    margin-left: 5%;
+  }
+
+  .h2 {
+    font-family: "AGW";
+    font-size: 3em;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0px;
+  }
+
+  .p {
+    margin: 0px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    color: #333;
+  }
+
   .centerMap {
     display: flex;
     justify-content: center;
@@ -173,10 +193,13 @@
   }
 
   .overlayContainer {
-    width: 40vw; /* 너비를 조정 */
-    height: 15vh; /* 높이를 조정 */
-    padding: 4vw; /* 패딩 조정 */
+    display: flex;
+    align-items: center;
+    width: 30vw; /* 너비를 조정 */
+    height: 3vh; /* 높이를 조정 */
+    padding: 3vw; /* 패딩 조정 */
     background-color: white;
+    border-radius: 38px;
   }
 
   .address {
@@ -192,18 +215,11 @@
     font-size: 1em;
   }
 
-  .detailButton {
-  }
-
   .CafeName {
     /* margin-top: 1vh; */
     /* margin-bottom: 1vh; */
     font-size: 1em;
-    margin-top: -0.3vh;
-  }
-
-  .cafenameContainer {
-    margin-top: 0.5vh;
+    margin: 0px;
   }
 
   .location {
@@ -230,6 +246,64 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 3%;
+    gap: 15%;
+  }
+
+  .inputContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vh;
+    margin-right: 4%;
+  }
+
+  .search_container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .search_input {
+    padding-left: 5%;
+    width: 85vw;
+    height: 5vh;
+    border-radius: 32px;
+    border: 1px solid #d7cccb;
+  }
+
+  .line {
+    height: 3vh;
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .magnifier_icon {
+    position: absolute;
+    right: -3%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10vw; /* 돋보기 이미지의 크기를 조절 */
+    height: 10vw;
+    cursor: pointer; /* 돋보기 아이콘이 클릭 가능한 것처럼 보이게 함 */
+  }
+
+  .modal {
+    position: fixed;
+    bottom: -500px; /* 모달의 초기 위치는 화면 밖에 있게 설정 */
+    left: 0;
+    width: 100%;
+    height: 200px; /* 원하는 높이로 설정 */
+    background-color: #ffffff;
+    transition: bottom 0.7s; /* 애니메이션 시간 설정 */
+    z-index: 1000; /* 다른 요소 위에 올라오게 함 */
+    border-radius: 20px 20px 0 0;
+    border: 1px solid black;
+  }
+
+  .showModal {
+    bottom: 0; /* 애니메이션 종료 위치 */
+  }
+
+  .closeButton {
   }
 }

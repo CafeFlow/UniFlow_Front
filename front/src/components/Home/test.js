@@ -27,15 +27,13 @@ const Home = () => {
   const [modalContent, setModalContent] = useState(""); // 모달에 표시될 내용
 
   // 마커 클릭 이벤트 핸들러
-  const handleOverlayClick = (e) => {
-    e.stopPropagation();
-    console.log("Overlay clicked!");
+  const handleOverlayClick = (content) => {
+    setModalContent(content);
     setIsModalVisible(true);
   };
 
   // 마커에서 닫기 버튼
   const handleCloseModal = () => {
-    console.log("Overlay close clicked!");
     setIsModalVisible(false);
   };
 
@@ -53,16 +51,24 @@ const Home = () => {
       .get(`${API_URL}/view-map`)
       .then((response) => {
         const data = response.data;
-        console.log(data);
 
         data.forEach((element) => {
           const overlayContent = `
           <div id="overlay_${element.name}" class="${styles.overlayContainer}">
             <div class="${styles.logoContainer}">
-              <img class="${styles.logo}" src=${cafeflowLogo} />
-              <h2 class="${styles.CafeName}">${element.name}</h2>
+                <img class="${styles.logo}" src=${cafeflowLogo} />
+                <h2 class="${styles.CafeName}">${element.name}</h2>
             </div>
-          </div>`;
+        <div>`;
+
+          {
+            // <div>
+            //   <h3 class="${styles.seat}">좌석</h3>
+            //   <p class="${styles.count}">${element.count} / 45</p>
+            // <span class="${styles.theme}">카페, 스터디</span>;
+            // </div>;
+            /* <button id="btn_${element.name}" class="${styles.detailButton}">자세히 알아보기</button> */
+          }
 
           const overlay = new kakao.maps.CustomOverlay({
             content: overlayContent,
@@ -88,6 +94,18 @@ const Home = () => {
         console.error(error);
       });
   }, [center]);
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/view-map`)
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <>
@@ -132,7 +150,6 @@ const Home = () => {
         >
           <p>건국대</p>
         </button>
-        <button onClick={() => setIsModalVisible(true)}>Test Modal</button>
       </div>
       <div className={styles.bigContainer}>
         <div className={styles.container}>

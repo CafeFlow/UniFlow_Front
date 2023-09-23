@@ -1,5 +1,5 @@
 import React from "react";
-import cafeflowLogo from "../icons/cafeflowLogo.png";
+import cafeflowLogo from "../icons/CafeFlow.png";
 import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 
@@ -11,10 +11,12 @@ const Header = () => {
   };
   return (
     <div className={styles.container}>
-      <img className={styles.logo} src={cafeflowLogo}></img>
-      <h1 className={styles.name} onClick={goHome}>
+      {/* <button className={styles.emptybutton}></button> */}
+      <button className={styles.button1} onClick={goHome}></button>
+      <button className={styles.button2}></button>
+      {/* <h1 className={styles.name} onClick={goHome}>
         Cafe Flow
-      </h1>
+      </h1> */}
     </div>
   );
 };
