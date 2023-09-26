@@ -1,4 +1,5 @@
 import "./App.css";
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import ReactGA from "react-ga";
@@ -19,11 +20,21 @@ history.listen((response) => {
 });
 
 const App = () => {
+  const [isTestButtonClicked, setIsTestButtonClicked] = useState(false);
+
   return (
     <BrowserRouter>
-      <Header />
+      <Header isTestButtonClicked={isTestButtonClicked} />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/"
+          element={
+            <Home
+              setIsTestButtonClicked={setIsTestButtonClicked}
+              isTestButtonClicked={isTestButtonClicked}
+            />
+          }
+        ></Route>
         <Route path="/review" element={<Review />}></Route>
       </Routes>
     </BrowserRouter>

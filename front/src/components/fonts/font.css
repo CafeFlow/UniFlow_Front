@@ -1,4 +1,9 @@
 @font-face {
   font-family: "AGW";
-  src: url("../fonts/AGW.ttf");
+  src: url("../fonts/AGW.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../fonts/Pretendard-Regular.ttf") format("truetype");
 }
