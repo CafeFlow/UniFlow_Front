@@ -32,7 +32,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh - 25vh);
+  height: 65vh;
   gap: 5vh;
 }
 
@@ -40,9 +40,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vh;
+  width: 80vh;
   height: 70vh;
   border: 1px solid lightgray;
+  border-radius: 5px;
 }
 
 .leftAd,
@@ -65,8 +66,8 @@
   padding: 0.5vw 1vw 1vw 1vw;
   background-color: white;
   border-radius: 5px;
-  border: 1px solid #046eed;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  border: 1px solid #d7cccb;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18); */
 }
 
 .CafeName {
@@ -125,11 +126,16 @@
   gap: 3%;
 }
 
+.inputContainer {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .container {
     display: flex;
     flex-direction: column;
     width: 100%;
+    /* animation: flyAway 1.3s forwards; */
   }
 
   .container2 {
@@ -148,6 +154,18 @@
     font-style: normal;
     font-weight: 400;
     margin: 0px;
+    /* animation: flyAway 1.3s forwards; */
+  }
+
+  @keyframes flyAway {
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    0% {
+      transform: translateY(200px) scale(0.3);
+      opacity: 0;
+    }
   }
 
   .p {
@@ -156,15 +174,27 @@
     font-style: normal;
     font-weight: 400;
     color: #333;
+    /* animation: flyAway 1.3s forwards; */
   }
 
   .centerMap {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 70vh;
+    width: 90vw;
+    height: 60vh;
     border: 1px solid lightgray;
+    /* animation: flyAway 1.3s forwards; */
+  }
+  .centerMap2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    height: 80vh;
+    margin-top: 3vh;
+    border: 1px solid lightgray;
+    /* animation: flyAway 1.3s forwards; */
   }
 
   .leftAd,
@@ -173,15 +203,49 @@
   }
 
   .mobileunderAd {
-    width: 100%;
-    height: 5vh;
+    width: 90vw;
+    height: 6vh;
     margin-top: -2vh;
     background-color: yellow;
+  }
+
+  .mobileunderAd2 {
+    display: none;
   }
 
   .buttonContainer {
     margin-left: 5%;
     margin-bottom: -1vh;
+    /* animation: flyAway 1.3s forwards; */
+  }
+
+  .buttonContainer p {
+    margin: 0px;
+    font-weight: bold;
+    font-size: larger;
+  }
+
+  .buttonContainer2 {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-left: 5%;
+    margin-top: -1vh;
+    margin-bottom: -1vh;
+  }
+
+  .buttonContainer2 p {
+    margin: 0px;
+    font-weight: bold;
+    font-size: larger;
+  }
+
+  .school {
+    font-family: "Pretendard";
+    font-size: 3em;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0px;
   }
 
   .univButton {
@@ -197,7 +261,7 @@
     align-items: center;
     width: 30vw; /* 너비를 조정 */
     height: 3vh; /* 높이를 조정 */
-    padding: 3vw; /* 패딩 조정 */
+    padding: 2vw; /* 패딩 조정 */
     background-color: white;
     border-radius: 38px;
   }
@@ -240,6 +304,7 @@
 
   .logo {
     width: 8vw;
+    padding-left: 1vw;
   }
 
   .logoContainer {
@@ -259,6 +324,7 @@
   .search_container {
     position: relative;
     display: inline-block;
+    /* animation: flyAway 1.3s forwards; */
   }
 
   .search_input {
@@ -287,23 +353,49 @@
     cursor: pointer; /* 돋보기 아이콘이 클릭 가능한 것처럼 보이게 함 */
   }
 
+  /* Home.module.css */
   .modal {
     position: fixed;
-    bottom: -500px; /* 모달의 초기 위치는 화면 밖에 있게 설정 */
+    bottom: 0;
+    left: 0;
+    width: 90vw;
+    background-color: #fff;
+    border: 1px solid #d7cccb;
+    border-radius: 16px 16px 0 0;
+    transform: translateY(100%);
+    transition: transform 0.5s ease-in-out;
+    z-index: 1000; /* 이 값을 조절하여 다른 요소 위에 올라오게 할 수 있습니다 */
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    padding: 5vw;
+    /* justify-content: center; */
+  }
+
+  .modal.visible {
+    transform: translateY(0);
+  }
+
+  .modalBackdrop {
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 200px; /* 원하는 높이로 설정 */
-    background-color: #ffffff;
-    transition: bottom 0.7s; /* 애니메이션 시간 설정 */
-    z-index: 1000; /* 다른 요소 위에 올라오게 함 */
-    border-radius: 20px 20px 0 0;
-    border: 1px solid black;
+    height: 100%;
+    /* background-color: rgba(0, 0, 0, 0.5);   */
+    z-index: 999;
   }
 
-  .showModal {
-    bottom: 0; /* 애니메이션 종료 위치 */
+  .title,
+  .inputContainer {
+    transition: opacity 0.3s, transform 0.3s; /* opacity와 transform을 0.3초 동안 부드럽게 전환 */
+    transform: translateY(0); /* 기본 위치 */
+    opacity: 1; /* 기본 투명도 */
   }
 
-  .closeButton {
+  /* isTestButtonClicked가 true일 때의 스타일 */
+  .hideContent {
+    opacity: 0; /* 내용이 숨겨질 때의 투명도 */
+    transform: translateY(-20px); /* 내용이 숨겨질 때의 위치 (올라가게 설정) */
   }
 }
