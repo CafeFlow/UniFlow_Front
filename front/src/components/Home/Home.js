@@ -87,9 +87,11 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
         function () {
           // 복사 성공
           console.log("주소가 클립보드에 복사되었습니다.");
+          alert("주소가 클립보드에 복사되었습니다!");
         },
         function (err) {
           // 복사 실패
+          alert("주소 복사에 실패했습니다!");
           console.error("주소 복사에 실패했습니다: ", err);
         }
       );

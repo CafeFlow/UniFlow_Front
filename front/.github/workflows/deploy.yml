@@ -3,12 +3,22 @@ on:
   push:
     branches:
       - [main]
+
+env:
+  PROJECT_NAME: CafeFlow_front
+  BUCKET_NAME: cafeflow-jy-bucket
+  CODE_DEPLOY_APP_NAME: cafeflow-codedeploy-jy
+  DEPLOYMENT_GROUP_NAME: cafeflow-codedeploy-group-jy
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code.
         uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Check Node v
         run: node -v
       - name: Install Dependencies
@@ -16,20 +26,20 @@ jobs:
       - name: Build
         run: npm run build
       - name: zip create
-        run: zip -qq -r ./build.zip .
+        run: zip -qq -r ./$GITHUB_SHA.zip . -x "node_modules/*"
         shell: bash
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          # aws-region: ap-northeast-2c
+          aws-region: ap-northeast-2
       - name: Upload to S3
-        run: |
-          aws s3 cp --region ap-northeast-2 ./build.zip s3://mycafeflowbucket/cafeflow_front/build.zip
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$BUCKET_NAME/$GITHUB_SHA.zip
+
       - name: Code Deploy To EC2 instance
         run: aws deploy create-deployment
-          --application-name cafeflow-codedeploy
+          --application-name $CODE_DEPLOY_APP_NAME
           --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name cafeflow-codedeploy-group
-          --s3-location bucket=mycafeflowbucket,bundleType=zip,key=build.zip
+          --deployment-group-name $DEPLOYMENT_GROUP_NAME
+          --s3-location bucket=mycafeflowbucket,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
