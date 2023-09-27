@@ -12,6 +12,7 @@ import filledGreen from "../icons/filledGreen.png";
 import filledYellow from "../icons/filledYellow.png";
 import filledRed from "../icons/filledRed.png";
 import line from "../icons/line.png";
+import copy from "../icons/copy.png";
 
 const { kakao } = window;
 
@@ -41,11 +42,11 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
   useEffect(() => {
     const getSeatImagePath = (count) => {
       if (count <= 15) {
-        return filledRed;
+        return seatRed;
       } else if (count > 15 && count <= 31) {
-        return filledYellow;
+        return seatYellow;
       } else {
-        return filledGreen;
+        return seatGreen;
       }
     };
 
@@ -75,7 +76,23 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
         prevCafeName.style.color = "black";
       }
 
-      setActiveOverlay(null); // activeOverlay 상태를 null로 초기화합니다.
+      setActiveOverlay(null); // activeOverlay 상태를 null로 초기화
+    }
+  };
+
+  const copyAddressToClipboard = () => {
+    if (modalData.address) {
+      // 주소가 존재하는 경우 클립보드에 복사
+      navigator.clipboard.writeText(modalData.address).then(
+        function () {
+          // 복사 성공
+          console.log("주소가 클립보드에 복사되었습니다.");
+        },
+        function (err) {
+          // 복사 실패
+          console.error("주소 복사에 실패했습니다: ", err);
+        }
+      );
     }
   };
 
@@ -94,46 +111,6 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
       .then((response) => {
         const data = response.data;
         console.log(data);
-
-        // data.forEach((element) => {
-        //   let seatImage;
-        //   if (element.count <= 15) {
-        //     seatImage = seatRed;
-        //   } else if (element.count > 15 && element.count <= 31) {
-        //     seatImage = seatYellow;
-        //   } else {
-        //     seatImage = seatGreen;
-        //   }
-
-        //   let borderColor;
-
-        //   if (element.count <= 15) {
-        //     borderColor = "#F96356";
-        //   } else if (element.count > 15 && element.count <= 31) {
-        //     borderColor = "#FFC85F";
-        //   } else {
-        //     borderColor = "#00F29B";
-        //   }
-
-        //   const overlayContent = `
-        //   <div id="overlay_${element.name}" class="${styles.overlayContainer}" style="border-color: lightgray">
-        //     <div class="${styles.logoContainer}">
-        //       <img class="${styles.logo}" src=${seatImage} />
-        //       <h2 class="${styles.CafeName}">${element.name}</h2>
-        //     </div>
-        //   </div>`;
-
-        //   const overlay = new kakao.maps.CustomOverlay({
-        //     content: overlayContent,
-        //     map: map,
-        //     position: new kakao.maps.LatLng(element.xmap, element.ymap),
-        //   });
-
-        //   kakao.maps.event.addListener(overlay, "click", function () {
-        //     setIsModalVisible(true); // 모달을 보이게 합니다.
-        //     setModalContent(element.name); // 클릭한 오버레이의 정보를 모달에 전달합니다. 이 부분은 필요에 따라 수정하면 됩니다.
-        //   });
-        // });
 
         data.forEach((element) => {
           let seatImage;
@@ -180,23 +157,23 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
             setModalData({
               name: element.name,
               count: element.count,
-              address: element.address, // 가정: address라는 속성이 API 응답에 있음
+              address: element.address,
             });
-            setIsTestButtonClicked(true); // 이 부분을 추가합니다.
+            setIsTestButtonClicked(true);
             setActiveOverlay(overlayContainer);
 
             // count 값에 따른 이미지와 텍스트 색상 설정
             if (element.count <= 15) {
-              logoImage.src = filledRed; // filledGreen 이미지의 경로로 변경해주세요.
+              logoImage.src = filledRed;
               overlayContainer.style.backgroundColor = "#F96356";
             } else if (element.count > 15 && element.count <= 31) {
-              logoImage.src = filledYellow; // filledYellow 이미지의 경로로 변경해주세요.
+              logoImage.src = filledYellow;
               overlayContainer.style.backgroundColor = "#FFC85F";
             } else {
-              logoImage.src = filledGreen; // filledRed 이미지의 경로로 변경해주세요.
+              logoImage.src = filledGreen;
               overlayContainer.style.backgroundColor = "#00F29B";
             }
-            cafeName.style.color = "white"; // 텍스트의 색상을 흰색으로 설정
+            cafeName.style.color = "white";
           });
 
           const overlay = new kakao.maps.CustomOverlay({
@@ -271,14 +248,6 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
         >
           <p className="school">건국대</p>
         </button>
-        {/* <button
-          onClick={() => {
-            setIsModalVisible(true);
-            setIsTestButtonClicked(true);
-          }}
-        >
-          test
-        </button>{" "} */}
       </div>
       <div className={styles.bigContainer}>
         <div
@@ -307,40 +276,40 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
       <div
         className={`${styles.modal} ${isModalVisible ? styles.visible : ""}`}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
+        <div className={styles.div1}>
           <div>
-            <h2 style={{ margin: "0px" }}>{modalData.name}</h2>
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <h2 style={{ margin: "0px", fontFamily: "Pretendard" }}>
+              {modalData.name}
+            </h2>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
               <p style={{ margin: "0px", color: "red" }}>별점 4.0</p>
-              <hr
-                style={{
-                  height: "1.5vh",
-                  marginLeft: "2vw",
-                  marginRight: "2vw",
-                }}
-              />
+              <hr className={styles.hr} />
+              {/* 추후 API 통신을 통해 서버에서 리뷰를 가져와 변경할 예정 */}
               <p style={{ margin: "0px", color: "#796262" }}> 리뷰 490</p>
             </div>
           </div>
-          <div
-            style={{
-              width: "30vw",
-              height: "5vh",
-              borderRadius: "38px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginTop: "-1vh",
-              border: "1px solid #D7CCCB",
-            }}
-          >
-            <p style={{ fontSize: "1.3em" }}>{modalData.count} / 45</p>
+          <div className={styles.div2}>
+            <p
+              style={{
+                fontSize: "1.3em",
+                color:
+                  modalData.count <= 15
+                    ? "#F96356"
+                    : modalData.count > 15 && modalData.count <= 31
+                    ? "#FFC85F"
+                    : "#00F29B",
+              }}
+            >
+              {modalData.count}
+            </p>
+            <p style={{ fontSize: "1.3em", color: "#796262" }}>
+              &nbsp;/&nbsp;45
+            </p>
             <img
               src={seatImagePath}
               alt="Seat Status"
@@ -348,20 +317,20 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
             />
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div className={styles.div4}>
+          {/* 추후 API 통신을 통해 서버에서 영업시간을 가져와 그에 따른 영업 유무 변경할 예정 */}
           <p>영업 중</p>
-          <hr
-            style={{
-              height: "1.5vh",
-              marginLeft: "2vw",
-              marginRight: "2vw",
-            }}
-          />
+          <hr className={styles.hr} />
+          {/* 추후 API 통신을 통해 서버에서 시간을 가져와 변경할 예정 */}
           <p style={{ color: "#796262" }}>23:00에 영업종료</p>
         </div>
-        <p style={{ marginTop: "0px", color: "#796262" }}>
-          {modalData.address}
-        </p>
+        <div className={styles.div3}>
+          <p style={{ color: "#796262" }}>{modalData.address}</p>
+          <button
+            className={styles.copyButton}
+            onClick={copyAddressToClipboard}
+          ></button>
+        </div>
       </div>
     </>
   );
