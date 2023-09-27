@@ -157,23 +157,23 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
             setModalData({
               name: element.name,
               count: element.count,
-              address: element.address, // 가정: address라는 속성이 API 응답에 있음
+              address: element.address,
             });
-            setIsTestButtonClicked(true); // 이 부분을 추가합니다.
+            setIsTestButtonClicked(true);
             setActiveOverlay(overlayContainer);
 
             // count 값에 따른 이미지와 텍스트 색상 설정
             if (element.count <= 15) {
-              logoImage.src = filledRed; // filledGreen 이미지의 경로로 변경해주세요.
+              logoImage.src = filledRed;
               overlayContainer.style.backgroundColor = "#F96356";
             } else if (element.count > 15 && element.count <= 31) {
-              logoImage.src = filledYellow; // filledYellow 이미지의 경로로 변경해주세요.
+              logoImage.src = filledYellow;
               overlayContainer.style.backgroundColor = "#FFC85F";
             } else {
-              logoImage.src = filledGreen; // filledRed 이미지의 경로로 변경해주세요.
+              logoImage.src = filledGreen;
               overlayContainer.style.backgroundColor = "#00F29B";
             }
-            cafeName.style.color = "white"; // 텍스트의 색상을 흰색으로 설정
+            cafeName.style.color = "white";
           });
 
           const overlay = new kakao.maps.CustomOverlay({
@@ -248,14 +248,6 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
         >
           <p className="school">건국대</p>
         </button>
-        {/* <button
-          onClick={() => {
-            setIsModalVisible(true);
-            setIsTestButtonClicked(true);
-          }}
-        >
-          test
-        </button>{" "} */}
       </div>
       <div className={styles.bigContainer}>
         <div
