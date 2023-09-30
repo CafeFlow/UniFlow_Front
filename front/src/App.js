@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import ReactGA from "react-ga";
 import { createBrowserHistory } from "@remix-run/router";
 
+import Intro from "./components/Intro/Intro";
 import Home from "./components/Home/Home";
 import Review from "./components/Review/Review";
 import Header from "./components/Header/Header";
@@ -26,8 +27,9 @@ const App = () => {
     <BrowserRouter>
       <Header isTestButtonClicked={isTestButtonClicked} />
       <Routes>
+        <Route path="/" element={<Intro />}></Route>
         <Route
-          path="/"
+          path="/home"
           element={
             <Home
               setIsTestButtonClicked={setIsTestButtonClicked}
