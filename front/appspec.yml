@@ -2,10 +2,10 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/deploy
+    destination: /home/ubuntu/CafeFlow_front
     overwrite: yes
 permissions:
-  - object: /home/ubuntu/deploy
+  - object: /home/ubuntu/CafeFlow_front
     owner: root
     group: root
     mode: 755
