@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPOSITORY=/home/ubuntu/deploy
+REPOSITORY=/home/ubuntu/CafeFlow_Front
 
 cd $REPOSITORY 
 

@@ -326,12 +326,15 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
           {/* 추후 API 통신을 통해 서버에서 시간을 가져와 변경할 예정 */}
           <p style={{ color: "#796262" }}>23:00에 영업종료</p>
         </div>
-        <div className={styles.div3}>
-          <p style={{ color: "#796262" }}>{modalData.address}</p>
-          <button
-            className={styles.copyButton}
-            onClick={copyAddressToClipboard}
-          ></button>
+        <div>
+          <span>주소</span>
+          <div className={styles.div3}>
+            <p style={{ color: "#796262" }}>{modalData.address}</p>
+            <button
+              className={styles.copyButton}
+              onClick={copyAddressToClipboard}
+            ></button>
+          </div>
         </div>
       </div>
     </>
