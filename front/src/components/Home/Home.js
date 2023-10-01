@@ -202,7 +202,7 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
           >
             <p className={styles.h2}>CafeFlow</p>
             <p className={styles.p}>
-              카페플로우를 통해 카페 내 현재 사람 수를 확인하세요.
+              카페플로우를 통해 카페 내 현재 사람 수를 확인하세요!!
             </p>
           </div>
           <div
