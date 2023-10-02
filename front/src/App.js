@@ -27,9 +27,9 @@ const App = () => {
     <BrowserRouter>
       <Header isTestButtonClicked={isTestButtonClicked} />
       <Routes>
-        <Route path="/" element={<Intro />}></Route>
+        {/* <Route path="/" element={<Intro />}></Route> */}
         <Route
-          path="/home"
+          path="/"
           element={
             <Home
               setIsTestButtonClicked={setIsTestButtonClicked}
