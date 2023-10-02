@@ -13,6 +13,7 @@ import filledYellow from "../icons/filledYellow.png";
 import filledRed from "../icons/filledRed.png";
 import line from "../icons/line.png";
 import copy from "../icons/copy.png";
+import DisplayAds from "../DisplayAds/DisplayAds";
 
 const { kakao } = window;
 
@@ -269,7 +270,7 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
             isTestButtonClicked ? styles.mobileunderAd2 : styles.mobileunderAd
           }
         >
-          밑 광고
+          <DisplayAds />
         </div>
       </div>
       {isModalVisible && (
