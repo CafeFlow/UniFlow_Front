@@ -1,30 +1,86 @@
-.container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 10vh;
-  /* border-bottom: 1px solid lightgray; */
-  gap: 1%;
-}
+@media (min-width: 768px) {
+  .container {
+    display: none;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    /* border-bottom: 1px solid lightgray; */
+    gap: 1%;
+  }
 
-.name {
-  display: flex;
-  align-items: center;
-  /* margin-left: 10%; */
-  font-size: 1.5rem;
-  /* font-family: "Jalnan", sans-serif; */
-  color: #046eed;
-}
+  .container2 {
+    display: flex;
+    width: 50%;
+    height: 10vh;
+    animation: flyAway 1s forwards;
+  }
 
-.logo {
-  width: 2vw;
-  height: 4vh;
-  margin-left: 10%;
-}
+  .name {
+    display: flex;
+    align-items: center;
+    /* margin-left: 10%; */
+    font-size: 1.5rem;
+    /* font-family: "Jalnan", sans-serif; */
+    color: #046eed;
+  }
 
-.logobutton {
-  background-image: url("../icons/CafeFlow.png");
-  background-size: cover;
+  .button1 {
+    width: 5vw;
+    height: 5vh;
+    /* margin-right: 1vw; */
+    background-image: url("../icons/CafeFlow.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    border: none;
+    animation: flyAway 1s forwards;
+  }
+
+  .button2 {
+    width: 10vw;
+    height: 5vh;
+    background-image: url("../icons/mail1.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    border: none;
+    animation: flyAway 1s forwards;
+  }
+
+  .search {
+    display: none;
+  }
+
+  .cafeflowText {
+    font-family: "AGW";
+    font-size: 1.5em;
+    margin-top: 3vh;
+    animation: flyAway 1s forwards;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+  }
+
+  .header2 {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    width: 2vw;
+    height: 4vh;
+    margin-left: 10%;
+  }
+
+  .logobutton {
+    background-image: url("../icons/CafeFlow.png");
+    background-size: cover;
+  }
 }
 
 @media (max-width: 768px) {

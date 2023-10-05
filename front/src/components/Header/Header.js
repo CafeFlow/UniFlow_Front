@@ -4,12 +4,19 @@ import search from "../icons/search.png";
 import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 
-const Header = ({ isTestButtonClicked }) => {
+const Header = ({ isTestButtonClicked, location }) => {
   const navigate = useNavigate();
 
   const goHome = () => {
     navigate("/");
   };
+  console.log(location); // location 객체가 정상적으로 로그에 출력되는지 확인
+
+  // location이 "/"(인트로)일 경우 header가 보이지 않게끔 함
+  if (location && location.pathname === "/") {
+    return null;
+  }
+
   return (
     <div className={isTestButtonClicked ? styles.container2 : styles.container}>
       <div style={{ display: "flex", alignItems: "center" }}>

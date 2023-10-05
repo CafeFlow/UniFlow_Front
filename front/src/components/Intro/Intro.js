@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Header from "../Header/Header";
-
-import "../Intro/Intro.module.css";
+import intro from "../icons/Intro.png";
+import styles from "../Intro/Intro.module.css";
 
 const Intro = () => {
   const navigate = useNavigate();
@@ -16,9 +16,18 @@ const Intro = () => {
       navigate("/home");
     }, 3000);
   }, []);
+
   return (
-    <div style={{ width: "100%", backgroundColor: "black" }}>
-      {isHeaderVisible && <Header />}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      {/* {isHeaderVisible && <Header />} */}
+      <img src={intro} className={styles.logo}></img>
     </div>
   );
 };
