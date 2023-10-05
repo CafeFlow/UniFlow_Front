@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import cafeflowLogo from "../icons/cafeflowLogo.png";
 import { API_URL } from "../Constant.js";
 import styles from "./Home.module.css";
 import seatGreen from "../icons/seatGreen.png";
@@ -14,6 +13,7 @@ import filledRed from "../icons/filledRed.png";
 import line from "../icons/line.png";
 import copy from "../icons/copy.png";
 import DisplayAds from "../DisplayAds/DisplayAds";
+import CafeFlow from "../icons/CafeFlow.png";
 
 const { kakao } = window;
 
@@ -53,6 +53,10 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
 
     setSeatImagePath(getSeatImagePath(modalData.count));
   }, [modalData]);
+
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
 
   const closeModal = () => {
     console.log("modal 종료!");
@@ -194,23 +198,18 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
 
   return (
     <>
-      {!isTestButtonClicked && (
+      {!isModalVisible && (
         <>
-          <div
-            className={`${styles.title} ${
-              isTestButtonClicked ? styles.hideContent : ""
-            }`}
-          >
-            <p className={styles.h2}>CafeFlow</p>
+          <div className={styles.title}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img src={CafeFlow} className={styles.desktopLogo}></img>
+              <p className={styles.h2}>CafeFlow</p>
+            </div>
             <p className={styles.p}>
-              카페플로우를 통해 카페 내 현재 사람 수를 확인하세요!!
+              카페플로우를 통해 카페 내 현재 사람 수를 확인하세요 😀
             </p>
           </div>
-          <div
-            className={`${styles.inputContainer} ${
-              isTestButtonClicked ? styles.hideContent : ""
-            }`}
-          >
+          <div className={styles.inputContainer}>
             <div className={styles.search_container}>
               <input className={styles.search_input} />
               <img src={line} className={styles.line} />
@@ -219,9 +218,10 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
           </div>
         </>
       )}
+
       <div
         className={
-          isTestButtonClicked ? styles.buttonContainer2 : styles.buttonContainer
+          isModalVisible ? styles.buttonContainer2 : styles.buttonContainer
         }
       >
         <button
@@ -253,16 +253,9 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
         </button>
       </div>
       <div className={styles.bigContainer}>
-        <div
-          className={isTestButtonClicked ? styles.container3 : styles.container}
-        >
+        <div className={styles.container}>
           <div className={styles.leftAd}>광고</div>
-          <div
-            id="map"
-            className={
-              isTestButtonClicked ? styles.centerMap2 : styles.centerMap
-            }
-          ></div>
+          <div id="map" className={styles.centerMap}></div>
           <div className={styles.rightAd}>광고</div>
         </div>
         <div
