@@ -12,6 +12,8 @@ import Header from "./components/Header/Header";
 
 const AppContent = () => {
   const [isTestButtonClicked, setIsTestButtonClicked] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const location = useLocation(); // useLocation 훅 사용
 
   return (
@@ -25,6 +27,8 @@ const AppContent = () => {
             <Home
               setIsTestButtonClicked={setIsTestButtonClicked}
               isTestButtonClicked={isTestButtonClicked}
+              isModalVisible={isModalVisible}
+              setIsModalVisible={setIsModalVisible}
             />
           }
         />

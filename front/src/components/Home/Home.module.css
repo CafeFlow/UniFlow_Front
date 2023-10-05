@@ -22,6 +22,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 5vh;
+    transition: transform 0.5s ease-in-out; /* 애니메이션 효과를 추가합니다. */
   }
 
   .buttonContainer {
@@ -251,14 +252,23 @@
     /* animation: flyAway 1.3s forwards; */
   }
 
+  .bigContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 5vh; */
+    /* transition: transform 1s ease-in-out;  */
+  }
+
   .centerMap {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 90vw;
-    height: 60vh;
+    height: 80vh;
     border: 1px solid lightgray;
-    /* animation: flyAway 1.3s forwards; */
+    transition: all 0.5s ease-in-out; /* 추가된 부분 */
   }
 
   .centerMap2 {
@@ -290,9 +300,13 @@
 
   .buttonContainer {
     margin-left: 5%;
-    margin-bottom: 1vh;
     margin-top: 1vh;
     /* animation: flyAway 1.3s forwards; */
+    /* transition: transform 1s ease-in-out;  */
+  }
+
+  .moveUp {
+    transform: translateY(-2vh); /* 이동할 거리를 설정합니다. */
   }
 
   .buttonContainer p {
@@ -523,5 +537,22 @@
   }
   .desktopLogo {
     display: none;
+  }
+
+  .hideElement {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+
+  .slideUp {
+    transition: transform 0.5s ease-in-out;
+    transform: translateY(-100%); /* 혹은 원하는 만큼의 비율/픽셀 */
+  }
+
+  .fadeOut {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
   }
 }
