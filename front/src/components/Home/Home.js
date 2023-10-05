@@ -17,7 +17,12 @@ import CafeFlow from "../icons/CafeFlow.png";
 
 const { kakao } = window;
 
-const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
+const Home = ({
+  setIsTestButtonClicked,
+  isTestButtonClicked,
+  setIsModalVisible,
+  isModalVisible,
+}) => {
   const [center, setCenter] = useState({
     lat: 37.550433,
     lng: 127.074055,
@@ -31,14 +36,25 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
   };
 
   const [selectedButton, setSelectedButton] = useState("세종대");
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const [activeOverlay, setActiveOverlay] = useState(null);
+  const [hideUI, setHideUI] = useState(false);
+  const [moveUp, setMoveUp] = useState(false);
+
   const [modalData, setModalData] = useState({
     name: "",
     count: 0,
     address: "",
   });
   const [seatImagePath, setSeatImagePath] = useState("");
+
+  // 버튼 클릭 시 실행되는 함수
+  const handleUnivButtonClick = (lat, lng, univName) => {
+    setCenter({ lat, lng });
+    setSelectedButton(univName);
+    setHideUI(true); // UI 숨김 상태 변경
+    setMoveUp(true); // UI 움직임 상태 변경
+    setIsTestButtonClicked(true);
+  };
 
   useEffect(() => {
     const getSeatImagePath = (count) => {
@@ -166,7 +182,7 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
               count: element.count,
               address: element.address,
             });
-            setIsTestButtonClicked(true);
+            // setIsTestButtonClicked(true);
             setActiveOverlay(overlayContainer);
 
             // count 값에 따른 이미지와 텍스트 색상 설정
@@ -200,7 +216,9 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
     <>
       {!isModalVisible && (
         <>
-          <div className={styles.title}>
+          <div
+            className={`${styles.title} ${hideUI ? styles.hideElement : ""}`}
+          >
             <div style={{ display: "flex", alignItems: "center" }}>
               <img src={CafeFlow} className={styles.desktopLogo}></img>
               <p className={styles.h2}>CafeFlow</p>
@@ -211,9 +229,21 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
           </div>
           <div className={styles.inputContainer}>
             <div className={styles.search_container}>
-              <input className={styles.search_input} />
-              <img src={line} className={styles.line} />
-              <img src={searchButton} className={styles.magnifier_icon} />
+              <input
+                className={`${styles.search_input} ${
+                  hideUI ? styles.hideElement : ""
+                }`}
+              />
+              <img
+                src={line}
+                className={`${styles.line} ${hideUI ? styles.hideElement : ""}`}
+              />
+              <img
+                src={searchButton}
+                className={`${styles.magnifier_icon} ${
+                  hideUI ? styles.hideElement : ""
+                }`}
+              />
             </div>
           </div>
         </>
@@ -221,20 +251,22 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
 
       <div
         className={
-          isModalVisible ? styles.buttonContainer2 : styles.buttonContainer
+          isModalVisible
+            ? styles.buttonContainer
+            : moveUp // 여기서 상태에 따라 클래스를 변경
+            ? `${styles.buttonContainer} ${styles.moveUp}`
+            : styles.buttonContainer
         }
       >
         <button
           style={{
             marginRight: "10px",
             borderRadius: "32px",
+
             borderColor: selectedButton === "세종대" ? "#F96356" : "#D7CCCB",
           }}
           className={styles.univButton}
-          onClick={() => {
-            setCenter({ lat: 37.550433, lng: 127.074055 });
-            setSelectedButton("세종대"); // 선택된 버튼 업데이트
-          }}
+          onClick={() => handleUnivButtonClick(37.550433, 127.074055, "세종대")}
         >
           <p className="school">세종대</p>
         </button>
@@ -244,15 +276,20 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
             borderColor: selectedButton === "건국대" ? "#F96356" : "#D7CCCB",
           }}
           className={styles.univButton}
-          onClick={() => {
-            setCenter({ lat: 37.54313, lng: 127.077501 });
-            setSelectedButton("건국대"); // 선택된 버튼 업데이트
-          }}
+          onClick={() => handleUnivButtonClick(37.54313, 127.077501, "건국대")}
         >
           <p className="school">건국대</p>
         </button>
       </div>
-      <div className={styles.bigContainer}>
+      <div
+        className={
+          isModalVisible
+            ? styles.bigContainer
+            : moveUp // 상태에 따라 클래스를 변경합니다.
+            ? `${styles.bigContainer} ${styles.moveUp}`
+            : styles.bigContainer
+        }
+      >
         <div className={styles.container}>
           <div className={styles.leftAd}>광고</div>
           <div id="map" className={styles.centerMap}></div>
@@ -295,10 +332,10 @@ const Home = ({ setIsTestButtonClicked, isTestButtonClicked }) => {
                 fontSize: "1.3em",
                 color:
                   modalData.count <= 15
-                    ? "#F96356"
+                    ? "#00F29B"
                     : modalData.count > 15 && modalData.count <= 31
                     ? "#FFC85F"
-                    : "#00F29B",
+                    : "#F96356",
               }}
             >
               {modalData.count}

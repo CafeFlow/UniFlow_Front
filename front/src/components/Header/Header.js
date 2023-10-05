@@ -1,15 +1,13 @@
 import React from "react";
 import cafeflowLogo from "../icons/CafeFlow.png";
 import search from "../icons/search.png";
-import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 
-const Header = ({ isTestButtonClicked, location }) => {
-  const navigate = useNavigate();
-
+const Header = ({ isTestButtonClicked, location, isModalVisible }) => {
   const goHome = () => {
-    navigate("/");
+    window.location.replace("/home");
   };
+
   console.log(location); // location 객체가 정상적으로 로그에 출력되는지 확인
 
   // location이 "/"(인트로)일 경우 header가 보이지 않게끔 함
@@ -24,12 +22,10 @@ const Header = ({ isTestButtonClicked, location }) => {
         {isTestButtonClicked && <p className={styles.cafeflowText}>CafeFlow</p>}
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
-        {isTestButtonClicked ? (
-          <>
-            <button className={styles.search}></button>
-          </>
-        ) : (
+        {!isTestButtonClicked ? (
           <button className={styles.button2}></button>
+        ) : (
+          <button className={styles.search}></button>
         )}
       </div>
     </div>

@@ -34,7 +34,7 @@
     background-position: center;
     background-color: white;
     border: none;
-    animation: flyAway 1s forwards;
+    /* animation: flyAway 1s forwards; */
   }
 
   .button2 {
@@ -46,7 +46,7 @@
     background-position: center;
     background-color: white;
     border: none;
-    animation: flyAway 1s forwards;
+    /* animation: flyAway 1s forwards; */
   }
 
   .search {
@@ -57,7 +57,7 @@
     font-family: "AGW";
     font-size: 1.5em;
     margin-top: 3vh;
-    animation: flyAway 1s forwards;
+    animation: trackFade 1s ease-out;
   }
 
   .header {
@@ -90,6 +90,7 @@
     gap: 60%;
     width: 100%;
     height: 10vh;
+    margin-bottom: -2vh;
   }
 
   .container2 {
@@ -98,7 +99,8 @@
     gap: 38%;
     width: 100%;
     height: 10vh;
-    animation: flyAway 1s forwards;
+    margin-bottom: -2vh;
+    /* animation: flyAway 1s forwards; */
   }
 
   .name {
@@ -125,7 +127,7 @@
     background-position: center;
     background-color: white;
     border: none;
-    animation: flyAway 1s forwards;
+    animation: trackFade 1s ease-out;
   }
 
   .button2 {
@@ -137,7 +139,7 @@
     background-position: center;
     background-color: white;
     border: none;
-    animation: flyAway 1s forwards;
+    animation: trackFade 1s ease-out;
   }
 
   .search {
@@ -149,14 +151,14 @@
     background-position: center;
     background-color: white;
     border: none;
-    animation: flyAway 1s forwards;
+    animation: trackFade 1s ease-out;
   }
 
   .cafeflowText {
     font-family: "AGW";
     font-size: 1.5em;
     margin-top: 3vh;
-    animation: flyAway 1s forwards;
+    animation: trackFade 1s ease-out;
   }
 
   .header {
@@ -173,10 +175,10 @@
 
 @keyframes trackFade {
   0% {
-    opacity: 0.5;
+    opacity: 0;
   }
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }
 
