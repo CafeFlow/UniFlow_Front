@@ -59,11 +59,11 @@ const Home = ({
   useEffect(() => {
     const getSeatImagePath = (count) => {
       if (count <= 15) {
-        return seatRed;
+        return seatGreen;
       } else if (count > 15 && count <= 31) {
         return seatYellow;
       } else {
-        return seatGreen;
+        return seatRed;
       }
     };
 
@@ -83,16 +83,16 @@ const Home = ({
     if (activeOverlay) {
       const prevLogoImage = activeOverlay.querySelector(`.${styles.logo}`);
       const prevCafeName = activeOverlay.querySelector(`.${styles.CafeName}`);
-      if (prevLogoImage.src.includes(filledGreen)) {
-        prevLogoImage.src = seatGreen;
+      if (prevLogoImage.src.includes(filledRed)) {
+        prevLogoImage.src = seatRed;
         activeOverlay.style.backgroundColor = "";
         prevCafeName.style.color = "black";
       } else if (prevLogoImage.src.includes(filledYellow)) {
         prevLogoImage.src = seatYellow;
         activeOverlay.style.backgroundColor = "";
         prevCafeName.style.color = "black";
-      } else if (prevLogoImage.src.includes(filledRed)) {
-        prevLogoImage.src = seatRed;
+      } else if (prevLogoImage.src.includes(filledGreen)) {
+        prevLogoImage.src = seatGreen;
         activeOverlay.style.backgroundColor = "";
         prevCafeName.style.color = "black";
       }
@@ -138,11 +138,11 @@ const Home = ({
         data.forEach((element) => {
           let seatImage;
           if (element.count <= 15) {
-            seatImage = seatRed;
+            seatImage = seatGreen;
           } else if (element.count > 15 && element.count <= 31) {
             seatImage = seatYellow;
           } else {
-            seatImage = seatGreen;
+            seatImage = seatRed;
           }
 
           let borderColor;
@@ -187,14 +187,14 @@ const Home = ({
 
             // count 값에 따른 이미지와 텍스트 색상 설정
             if (element.count <= 15) {
-              logoImage.src = filledRed;
-              overlayContainer.style.backgroundColor = "#F96356";
+              logoImage.src = filledGreen;
+              overlayContainer.style.backgroundColor = "#00F29B";
             } else if (element.count > 15 && element.count <= 31) {
               logoImage.src = filledYellow;
               overlayContainer.style.backgroundColor = "#FFC85F";
             } else {
-              logoImage.src = filledGreen;
-              overlayContainer.style.backgroundColor = "#00F29B";
+              logoImage.src = filledRed;
+              overlayContainer.style.backgroundColor = "#F96356";
             }
             cafeName.style.color = "white";
           });
