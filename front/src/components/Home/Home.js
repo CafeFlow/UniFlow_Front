@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_URL } from "../constant";
 import { useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
 import seatGreen from "../icons/seatGreen.png";
@@ -28,7 +27,8 @@ const Home = ({
     lng: 127.074055,
   });
 
-  const API = process.env.REACT_APP_API_URL;
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const navigate = useNavigate();
 
   const navigateToReview = () => {
@@ -131,7 +131,7 @@ const Home = ({
 
     // axios로 가져온 데이터로 마커 생성
     axios
-      .get(`${API}/view-map`)
+      .get(`${API_URL}/view-map`)
       .then((response) => {
         const data = response.data;
         console.log(data);
