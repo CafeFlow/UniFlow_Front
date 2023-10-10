@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../Constant.js";
 import styles from "./Home.module.css";
 import seatGreen from "../icons/seatGreen.png";
 import seatRed from "../icons/seatRed.png";
@@ -27,6 +26,8 @@ const Home = ({
     lat: 37.550433,
     lng: 127.074055,
   });
+
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const navigate = useNavigate();
 
