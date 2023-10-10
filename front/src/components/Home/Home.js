@@ -30,11 +30,6 @@ const Home = ({
 
   const navigate = useNavigate();
 
-  const navigateToReview = () => {
-    console.log("asd");
-    navigate("/review");
-  };
-
   const [selectedButton, setSelectedButton] = useState("세종대");
   const [activeOverlay, setActiveOverlay] = useState(null);
   const [hideUI, setHideUI] = useState(false);
