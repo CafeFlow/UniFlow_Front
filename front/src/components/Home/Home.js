@@ -127,10 +127,11 @@ const Home = ({
     axios
       .get(`${API_URL}/view-map`)
       .then((response) => {
-        const data = response.data.data;
+        const data = response.data;
         console.log(data);
 
-        data.forEach((element) => {
+        Array.from(data).forEach((element) => {
+          // console.log(element.count);
           let seatImage;
           if (element.count <= 15) {
             seatImage = seatGreen;
