@@ -127,7 +127,7 @@ const Home = ({
     axios
       .get(`${API_URL}/view-map`)
       .then((response) => {
-        const data = response.data;
+        const data = response.data.data;
         console.log(data);
 
         data.forEach((element) => {
