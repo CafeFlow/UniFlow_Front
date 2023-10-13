@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
-// import { API_URL } from "../Constant";
+import { API_URL } from "../Constant";
 import seatGreen from "../icons/seatGreen.png";
 import seatRed from "../icons/seatRed.png";
 import seatYellow from "../icons/seatYellow.png";
@@ -28,8 +28,7 @@ const Home = ({
     lng: 127.074055,
   });
 
-  const API_URL = process.env.REACT_APP_API_URL;
-  console.log(API_URL);
+  const navigate = useNavigate();
 
   const [selectedButton, setSelectedButton] = useState("세종대");
   const [activeOverlay, setActiveOverlay] = useState(null);
