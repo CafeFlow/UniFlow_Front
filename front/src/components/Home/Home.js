@@ -29,6 +29,7 @@ const Home = ({
   });
 
   const API_URL = process.env.REACT_APP_API_URL;
+  console.log(API_URL);
 
   const [selectedButton, setSelectedButton] = useState("세종대");
   const [activeOverlay, setActiveOverlay] = useState(null);
