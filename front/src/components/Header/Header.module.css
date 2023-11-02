@@ -203,3 +203,9 @@
     opacity: 0;
   }
 }
+
+.hideOnDesktop {
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
