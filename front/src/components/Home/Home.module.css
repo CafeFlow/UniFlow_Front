@@ -1,19 +1,27 @@
 @media (min-width: 1024px) {
   .title {
-    width: 50%;
-    margin: 5vh 0 3vh 12%;
+    width: 100%;
+    margin: 3vh 0 3vh 9vw;
   }
 
   .h2 {
+    margin: 0px;
     font-family: "AGW";
-    font-size: 3em;
+    font-size: 1.5em;
     font-style: normal;
     font-weight: 400;
     margin: 0px;
   }
 
-  .title p {
+  .confirm {
+    display: flex;
+    /* justify-content: center; */
+  }
+
+  .p {
     margin: 0px;
+    font-size: 1em;
+    font-family: "AGW";
   }
 
   .bigContainer {
@@ -27,10 +35,12 @@
 
   .buttonContainer {
     display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    margin-left: 30%;
     margin-top: 1vh;
     margin-bottom: -1vh;
+    gap: 36vw;
   }
 
   .buttonContainer p {
@@ -53,8 +63,18 @@
     font-size: larger;
   }
 
+  .circle {
+    width: 1.5vw;
+    margin-right: 0.5vw;
+  }
+
+  .choose {
+    font-family: "Pretendard";
+    font-weight: 400;
+  }
+
   .univButton {
-    width: 7vw;
+    width: 5vw;
     height: 4vh;
     background-color: white;
     border: 1px solid #046eed;
@@ -66,7 +86,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 65vh;
+    height: 75vh;
     gap: 5vh;
   }
 
@@ -74,8 +94,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80vh;
-    height: 70vh;
+    width: 160vh;
+    height: 80vh;
     border: 1px solid lightgray;
     border-radius: 5px;
   }
@@ -98,9 +118,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10vw;
+    width: 6vw;
     height: 2vh;
-    padding: 1vw 1vw 1vw 1vw;
+    padding: 0.7vw 0.7vw 0.7vw 0.7vw;
     background-color: white;
     border-radius: 38px;
     border: 1px solid #d7cccb;
@@ -108,7 +128,7 @@
   }
 
   .CafeName {
-    font-size: 1em;
+    font-size: 0.8em;
     /* margin-bottom: -1vh; */
     /* margin-top: 0px; */
   }
@@ -163,29 +183,80 @@
   }
 
   .inputContainer {
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search_container {
+    position: relative;
+    display: inline-block;
+    /* animation: flyAway 1.3s forwards; */
+  }
+
+  .search_input {
+    padding-left: 5%;
+    width: 15vw;
+    height: 4vh;
+    border-radius: 32px;
+    border: 1px solid #d7cccb;
+  }
+
+  .line {
+    height: 3vh;
+    position: absolute;
+    right: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .magnifier_icon {
+    position: absolute;
+    right: -3%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2vw; /* 돋보기 이미지의 크기를 조절 */
+    /* height: 2vw; */
+    cursor: pointer; /* 돋보기 아이콘이 클릭 가능한 것처럼 보이게 함 */
+  }
+  .mail1 {
+    height: 4.5vh;
+    margin-left: 1.5vw;
   }
 
   .modal {
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
     width: 400px;
     height: 100%;
     transition: transform 0.3s ease-out;
-    transform: translateX(100%);
+    transform: translateX(-100%);
     background-color: white;
     z-index: 1;
-    opacity: 90%;
+    opacity: 100%;
   }
 
   .modal.visible {
     transform: translateX(0);
   }
 
+  .closeButton {
+    background-image: url("../icons/closebutton.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    margin: 1vh;
+    z-index: 1000;
+    width: 3vw;
+    height: 3vw;
+  }
+
   .desktopLogo {
-    width: 5vw;
-    margin-top: -1vh;
+    width: 3vw;
+    margin-top: -0.5vh;
     margin-right: 1vh;
   }
 
@@ -197,6 +268,75 @@
     height: 100%;
     /* background-color: rgba(0, 0, 0, 0.5);   */
     z-index: 999;
+  }
+
+  .div1 {
+  }
+
+  .modalCafeName {
+    font-size: 1.3em;
+    margin: 0 0 0.3vh 0;
+    font-family: "Pretendard";
+  }
+
+  .div2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: -1vh; */
+    border: 1px solid #d7cccb;
+    border-radius: 38px;
+    width: 10vw;
+    height: 5vh;
+  }
+
+  .div3 {
+    display: flex;
+    flex-direction: column;
+    /* height: 3vh; */
+    margin-left: 5%;
+  }
+
+  .div4 {
+    display: flex;
+    align-items: center;
+    height: 5vh;
+    margin-left: 5%;
+    width: 90%;
+    margin-top: 2vh;
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+  }
+
+  .hr {
+    height: 1.5vh;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+  }
+
+  .copyButton {
+    background-image: url("../icons/copy.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 2vw;
+    height: 2vw;
+    margin-left: 0.5vw;
+    background-color: white;
+    border: none;
+  }
+
+  .seperateLine {
+    width: 100%;
+  }
+
+  .menuList {
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid lightgray;
+  }
+  .menuList > p {
+    margin: 8px 0 10px 0;
   }
 }
 
@@ -232,6 +372,11 @@
     /* animation: flyAway 1.3s forwards; */
   }
 
+  .confirm {
+    display: flex;
+    margin-left: 5%;
+  }
+
   @keyframes flyAway {
     100% {
       transform: translateY(0) scale(1);
@@ -252,6 +397,9 @@
     /* animation: flyAway 1.3s forwards; */
   }
 
+  .clickedP {
+    display: none;
+  }
   .bigContainer {
     display: flex;
     flex-direction: column;
@@ -309,12 +457,17 @@
     transform: translateY(-2vh); /* 이동할 거리를 설정합니다. */
   }
 
-  .buttonContainer p {
+  .univButton > p {
     margin: 0px;
+    font-size: 0.3em;
     font-weight: bold;
     font-size: larger;
   }
 
+  .buttonContainer > h2 {
+    margin: 0px;
+    font-size: 0.8em;
+  }
   .buttonContainer2 {
     display: flex;
     text-align: center;

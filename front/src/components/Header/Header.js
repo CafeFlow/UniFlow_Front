@@ -16,7 +16,11 @@ const Header = ({ isTestButtonClicked, location, isModalVisible }) => {
   }
 
   return (
-    <div className={isTestButtonClicked ? styles.container2 : styles.container}>
+    <div
+      className={`${
+        isTestButtonClicked ? styles.container2 : styles.container
+      } ${styles.hideOnDesktop}`}
+    >
       <div style={{ display: "flex", alignItems: "center" }}>
         <button className={styles.button1} onClick={goHome}></button>
         {isTestButtonClicked && <p className={styles.cafeflowText}>CafeFlow</p>}
