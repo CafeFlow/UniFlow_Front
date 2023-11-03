@@ -236,7 +236,7 @@ const Home = ({
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "53vw",
+                gap: "51%",
               }}
             >
               <div

@@ -1,7 +1,7 @@
 @media (min-width: 1024px) {
   .title {
     width: 100%;
-    margin: 3vh 0 3vh 9vw;
+    margin: 3vh 0 3vh 10vw;
   }
 
   .h2 {
@@ -40,7 +40,7 @@
     text-align: center;
     margin-top: 1vh;
     margin-bottom: -1vh;
-    gap: 36vw;
+    gap: 34vw;
   }
 
   .buttonContainer p {
@@ -219,6 +219,7 @@
     /* height: 2vw; */
     cursor: pointer; /* 돋보기 아이콘이 클릭 가능한 것처럼 보이게 함 */
   }
+
   .mail1 {
     height: 4.5vh;
     margin-left: 1.5vw;
