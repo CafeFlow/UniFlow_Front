@@ -6,12 +6,16 @@ import { API_URL } from "../Constant";
 
 const ReviewsComponent = ({ cafeId }) => {
   const [reviews, setReviews] = useState([]); // 리뷰들을 저장할 상태
+  const [reviewSize, setReviewSize] = useState(0);
+  const [averRating, setAverRating] = useState(0);
 
   // 서버로부터 리뷰 데이터를 가져오는 함수
   const fetchReviews = async () => {
     try {
       const response = await axios.get(`${API_URL}/${cafeId}/reviews`);
       setReviews(response.data.reviewList); // 상태에 리뷰 데이터 저장
+      setReviewSize(response.data.reviewSize); // 리뷰 개수 상태 저장
+      setAverRating(response.data.averRating); // 평균 평점 상태 저장
       console.log(response.data);
     } catch (error) {
       console.error("리뷰를 가져오는 중 오류가 발생했습니다", error);
@@ -47,7 +51,9 @@ const ReviewsComponent = ({ cafeId }) => {
 
   return (
     <div>
-      <h3 className={styles.reviewBox}>리뷰</h3>
+      <h3 className={styles.reviewBox}>
+        리뷰 {reviewSize}개, 평균 별점 {averRating}점
+      </h3>
       <div className={styles.bigContainer}>
         {reviews.map((review) => (
           <div key={review.id} className={styles.container}>

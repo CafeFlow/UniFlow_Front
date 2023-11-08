@@ -5,7 +5,6 @@ import {
   Routes,
   useLocation,
 } from "react-router-dom";
-import Intro from "./components/Intro/Intro";
 import Home from "./components/Home/Home";
 import Review from "./components/Review/Review";
 import Header from "./components/Header/Header";
@@ -32,7 +31,7 @@ const AppContent = () => {
             />
           }
         />
-        <Route path="/review" element={<Review />} />
+        {/* <Route path="/review" element={<Review />} /> */}
       </Routes>
     </>
   );

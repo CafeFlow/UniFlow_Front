@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import styles from "./Home.module.css";
 import { API_URL } from "../Constant";
 import ReviewModal from "../ReviewModal/ReviewModal";
-import ReviewsComponent from "../ReviewsComponent/ReviewsComponent";
+import starr from "../icons/starr.png";
 import seatGreen from "../icons/seatGreen.png";
 import seatRed from "../icons/seatRed.png";
 import seatYellow from "../icons/seatYellow.png";
@@ -30,6 +30,56 @@ const Home = ({
   isModalVisible,
   cafeId,
 }) => {
+  const [reviews, setReviews] = useState([]); // 리뷰들을 저장할 상태
+  const [reviewSize, setReviewSize] = useState(0);
+  const [averRating, setAverRating] = useState(0);
+  const [selectedCafeId, setSelectedCafeId] = useState(null);
+
+  // 서버로부터 리뷰 데이터를 가져오는 함수
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/${selectedCafeId}/reviews`);
+      setReviews(response.data.reviewList); // 상태에 리뷰 데이터 저장
+      setReviewSize(response.data.reviewSize); // 리뷰 개수 상태 저장
+      setAverRating(response.data.averRating); // 평균 평점 상태 저장
+      console.log(response.data);
+    } catch (error) {
+      // console.error("리뷰를 가져오는 중 오류가 발생했습니다", error);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedCafeId) {
+      fetchReviews();
+    }
+  }, [selectedCafeId]); // selectedCafeId가 변경될 때만 fetchReviews를 호출
+
+  // 지난 시간을 표기해주는 함수
+  const timeAgo = (dateString) => {
+    const now = new Date();
+    const reviewDate = new Date(dateString);
+    const diffInSeconds = Math.round((now - reviewDate) / 1000);
+    const diffInMinutes = Math.round(diffInSeconds / 60);
+    const diffInHours = Math.round(diffInMinutes / 60);
+    const diffInDays = Math.round(diffInHours / 24);
+
+    if (diffInHours < 24) {
+      if (diffInHours === 1) return "1시간 전";
+      return `${diffInHours}시간 전`;
+    } else if (diffInDays <= 7) {
+      if (diffInDays === 1) return "1일 전";
+      return `${diffInDays}일 전`;
+    } else {
+      // 7일 이상이면 '2023-11-06' 형태로 표시
+      return reviewDate.toLocaleDateString("ko-KR");
+    }
+  };
+
+  // 컴포넌트가 마운트될 때 리뷰 데이터를 가져옵니다.
+  useEffect(() => {
+    fetchReviews();
+  }, [cafeId]);
+
   const [center, setCenter] = useState({
     lat: 37.550433,
     lng: 127.074055,
@@ -43,7 +93,6 @@ const Home = ({
   });
 
   const [activeTab, setActiveTab] = useState("메뉴");
-  const [selectedCafeId, setSelectedCafeId] = useState(null);
 
   const handleCafeClick = (id) => {
     setSelectedCafeId(id); // 클릭된 카페의 ID로 상태 업데이트
@@ -254,6 +303,8 @@ const Home = ({
       });
   }, [center]);
 
+  const calculatedHeight = `calc(100vh + ${reviewSize * 25}px)`;
+  console.log(calculatedHeight);
   return (
     <>
       {/* 데스크탑 버전 */}
@@ -474,27 +525,23 @@ const Home = ({
             style={{
               display: "flex",
               justifyContent: "space-around",
-              gap: "15%",
+              gap: "20%",
             }}
           >
             <div className={styles.div1}>
               <h2 className={styles.modalCafeName}>{modalData.name}</h2>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <p style={{ margin: "0px", color: "red" }}>별점</p>
+              <div className={styles.flex}>
+                <p style={{ margin: "0px", color: "red" }}>별점 {averRating}</p>
                 <hr className={styles.hr} />
-                {/* 추후 API 통신을 통해 서버에서 리뷰를 가져와 변경할 예정 */}
-                <p style={{ margin: "0px", color: "#796262" }}>리뷰 490</p>
+                <p style={{ margin: "0px", color: "#796262" }}>
+                  리뷰 {reviewSize}
+                </p>
               </div>
             </div>
             <div className={styles.div2}>
               <p
                 style={{
-                  fontSize: "1.3em",
+                  fontSize: "1em",
                   color:
                     modalData.count <= 15
                       ? "#00F29B"
@@ -505,13 +552,13 @@ const Home = ({
               >
                 {modalData.count}
               </p>
-              <p style={{ fontSize: "1.3em", color: "#796262" }}>
+              <p style={{ fontSize: "1em", color: "#796262" }}>
                 &nbsp;/&nbsp;45
               </p>
               <img
                 src={seatImagePath}
                 alt="Seat Status"
-                style={{ height: "3vh", marginLeft: "1vw" }}
+                style={{ height: "3vh", marginLeft: "0.5vw" }}
               />
             </div>
           </div>
@@ -530,6 +577,7 @@ const Home = ({
                 className={styles.copyButton}
                 onClick={copyAddressToClipboard}
               ></button>
+              <p className={styles.copy}>복사</p>
             </div>
           </div>
           <img src={seperateLine} className={styles.seperateLine}></img>
@@ -559,7 +607,10 @@ const Home = ({
                 <div>
                   <div className={styles.flex1}>
                     <div className={styles.flex}>
-                      <p style={{ color: "red" }}>별점 4.0</p>•<p>350명 참여</p>
+                      <p className={styles.star} style={{ color: "red" }}>
+                        별점 {averRating}
+                      </p>
+                      <p className={styles.reviewSize}>•{reviewSize}명 참여</p>
                     </div>
                     <div>
                       <button
@@ -571,7 +622,41 @@ const Home = ({
                       </button>
                     </div>
                   </div>
-                  <ReviewsComponent cafeId={selectedCafeId} />
+                  {/* <ReviewsComponent cafeId={selectedCafeId} /> */}
+                  <div style={{ height: calculatedHeight }}>
+                    <h3 className={styles.reviewBox}>리뷰 {reviewSize}개</h3>
+                    <div className={styles.bigContainer1}>
+                      {reviews.map((review) => (
+                        <div key={review.id} className={styles.container3}>
+                          <div className={styles.container2}>
+                            <div className={styles.flex}>
+                              <div>
+                                <p className={styles.unKnown}>
+                                  익명{review.id}
+                                </p>
+                              </div>
+                              &nbsp;
+                              <div>
+                                <p className={styles.time}>
+                                  {timeAgo(review.regiDate)}
+                                </p>
+                              </div>
+                            </div>
+                            <div
+                              className={styles.flex}
+                              style={{ gap: "10%", marginRight: "1vw" }}
+                            >
+                              <img src={starr} className={styles.starr}></img>
+                              <p className={styles.rate}>{review.rate}</p>
+                            </div>
+                          </div>
+                          <div className={styles.commentBox}>
+                            <p className={styles.comment}>{review.comments}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
               {activeTab === "사진" && <div>사진 내용</div>}
@@ -604,7 +689,7 @@ const Home = ({
                   alignItems: "center",
                 }}
               >
-                <p style={{ margin: "0px", color: "red" }}>별점 4.0</p>
+                <p style={{ margin: "0px", color: "red" }}>별점 {averRating}</p>
                 <img
                   src={line}
                   style={{
@@ -614,7 +699,10 @@ const Home = ({
                   }}
                 ></img>
                 {/* 추후 API 통신을 통해 서버에서 리뷰를 가져와 변경할 예정 */}
-                <p style={{ margin: "0px", color: "#796262" }}> 리뷰 490</p>
+                <p style={{ margin: "0px", color: "#796262" }}>
+                  {" "}
+                  리뷰 {reviewSize}
+                </p>
               </div>
               <div className={styles.div2}>
                 <p
