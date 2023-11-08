@@ -20,9 +20,9 @@ const AppContent = () => {
     <>
       <Header isTestButtonClicked={isTestButtonClicked} location={location} />
       <Routes>
-        <Route path="/" element={<Intro />} />
+        {/* <Route path="/" element={<Intro />} /> */}
         <Route
-          path="/home"
+          path="/"
           element={
             <Home
               setIsTestButtonClicked={setIsTestButtonClicked}

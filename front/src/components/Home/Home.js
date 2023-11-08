@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useMediaQuery } from "react-responsive";
-import { useNavigate } from "react-router-dom";
+import Header from "../Header/Header";
 import styles from "./Home.module.css";
 import { API_URL } from "../Constant";
+import ReviewModal from "../ReviewModal/ReviewModal";
+import ReviewsComponent from "../ReviewsComponent/ReviewsComponent";
 import seatGreen from "../icons/seatGreen.png";
 import seatRed from "../icons/seatRed.png";
 import seatYellow from "../icons/seatYellow.png";
@@ -17,6 +19,7 @@ import DisplayAds from "../DisplayAds/DisplayAds";
 import CafeFlow from "../icons/CafeFlow.png";
 import circle from "../icons/circle.png";
 import seperateLine from "../icons/seperateLine.png";
+import pen from "../icons/pen.png";
 
 const { kakao } = window;
 
@@ -25,6 +28,7 @@ const Home = ({
   isTestButtonClicked,
   setIsModalVisible,
   isModalVisible,
+  cafeId,
 }) => {
   const [center, setCenter] = useState({
     lat: 37.550433,
@@ -38,9 +42,12 @@ const Home = ({
     query: "(max-width:768px)",
   });
 
-  const navigate = useNavigate();
-
   const [activeTab, setActiveTab] = useState("메뉴");
+  const [selectedCafeId, setSelectedCafeId] = useState(null);
+
+  const handleCafeClick = (id) => {
+    setSelectedCafeId(id); // 클릭된 카페의 ID로 상태 업데이트
+  };
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -83,6 +90,28 @@ const Home = ({
 
     setSeatImagePath(getSeatImagePath(modalData.count));
   }, [modalData]);
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때 스크롤 비활성화
+    document.body.style.overflow = "hidden";
+
+    // 컴포넌트가 언마운트될 때 스크롤 활성화
+    return () => {
+      document.body.style.overflow = "scroll";
+    };
+  }, []); // 빈 배열은 컴포넌트가 마운트될 때만 실행됨을 의미
+
+  // 리뷰 작성 modal 열고 닫기
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal2 = () => {
+    setModalOpen(false);
+  };
+  //////////////////////////////////////////////////////////
 
   const closeModal = () => {
     console.log("modal 종료!");
@@ -147,6 +176,7 @@ const Home = ({
 
         Array.from(data).forEach((element) => {
           // console.log(element.count);
+          // console.log(element.id);
           let seatImage;
           if (element.count <= 15) {
             seatImage = seatGreen;
@@ -178,7 +208,7 @@ const Home = ({
           logoImage.className = styles.logo;
           logoImage.src = seatImage;
 
-          const cafeName = document.createElement("h2");
+          const cafeName = document.createElement("p");
           cafeName.className = styles.CafeName;
           cafeName.innerText = element.name;
 
@@ -188,7 +218,7 @@ const Home = ({
 
           overlayContainer.addEventListener("click", function () {
             setIsModalVisible(true);
-
+            handleCafeClick(element.id); // id값을 넘겨주기 위해 클릭 이벤트에 ID 전달
             setModalData({
               name: element.name,
               count: element.count,
@@ -232,19 +262,8 @@ const Home = ({
           <div
             className={`${styles.title} ${hideUI ? styles.hideElement : ""}`}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "51%",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
+            <div className={styles.flex2}>
+              <div className={styles.flex}>
                 <img src={CafeFlow} className={styles.desktopLogo}></img>
                 <p className={styles.h2}>CafeFlow</p>
               </div>
@@ -277,6 +296,7 @@ const Home = ({
       {/* 모바일 버전 */}
       {!isModalVisible && isMobile && (
         <>
+          <Header />
           <div
             className={`${styles.title} ${hideUI ? styles.hideElement : ""}`}
           >
@@ -418,6 +438,9 @@ const Home = ({
           >
             <p className="school">건국대</p>
           </button>
+          {isModalVisible && (
+            <div className={styles.modalBackdrop} onClick={closeModal}></div>
+          )}
         </div>
       )}
       <div
@@ -439,12 +462,9 @@ const Home = ({
             isTestButtonClicked ? styles.mobileunderAd2 : styles.mobileunderAd
           }
         >
-          <DisplayAds />
+          {/* <DisplayAds /> */}
         </div>
       </div>
-      {/* {isModalVisible && (
-        // <div className={styles.modalBackdrop} onClick={closeModal}></div>
-      )} */}
       {isPc && (
         <div
           className={`${styles.modal} ${isModalVisible ? styles.visible : ""}`}
@@ -453,8 +473,8 @@ const Home = ({
           <div
             style={{
               display: "flex",
-              marginLeft: "5%",
-              gap: "10vw",
+              justifyContent: "space-around",
+              gap: "15%",
             }}
           >
             <div className={styles.div1}>
@@ -465,17 +485,10 @@ const Home = ({
                   alignItems: "center",
                 }}
               >
-                <p style={{ margin: "0px", color: "red" }}>별점 4.0</p>
-                <img
-                  src={line}
-                  style={{
-                    height: "2vh",
-                    margin: "0 0.5vw 0 0.5vw",
-                    width: "0.1vw",
-                  }}
-                ></img>
+                <p style={{ margin: "0px", color: "red" }}>별점</p>
+                <hr className={styles.hr} />
                 {/* 추후 API 통신을 통해 서버에서 리뷰를 가져와 변경할 예정 */}
-                <p style={{ margin: "0px", color: "#796262" }}> 리뷰 490</p>
+                <p style={{ margin: "0px", color: "#796262" }}>리뷰 490</p>
               </div>
             </div>
             <div className={styles.div2}>
@@ -498,23 +511,21 @@ const Home = ({
               <img
                 src={seatImagePath}
                 alt="Seat Status"
-                style={{ height: "3vh", marginLeft: "10px" }}
+                style={{ height: "3vh", marginLeft: "1vw" }}
               />
             </div>
           </div>
           <div className={styles.div4}>
             {/* 추후 API 통신을 통해 서버에서 영업시간을 가져와 그에 따른 영업 유무 변경할 예정 */}
-            <p>영업 중</p>
+            <p style={{ marginLeft: "2%" }}>영업 중</p>
             <hr className={styles.hr} />
             {/* 추후 API 통신을 통해 서버에서 시간을 가져와 변경할 예정 */}
             <p style={{ color: "#796262" }}>23:00에 영업종료</p>
           </div>
           <div className={styles.div3}>
-            <span style={{ marginTop: "2vh" }}>주소</span>
+            {/* <span style={{ marginTop: "2vh" }}>주소</span> */}
             <div style={{ display: "flex", alignItems: "center" }}>
-              <p className={styles.address} style={{ color: "#796262" }}>
-                {modalData.address}
-              </p>
+              <p className={styles.address}>{modalData.address}</p>
               <button
                 className={styles.copyButton}
                 onClick={copyAddressToClipboard}
@@ -525,93 +536,132 @@ const Home = ({
           <div>
             <div className={styles.menuList}>
               {["메뉴", "리뷰", "사진", "정보"].map((tab) => (
-                <p
+                <button
                   key={tab}
                   onClick={() => handleTabClick(tab)}
-                  className={activeTab === tab ? styles.activeTab : ""}
+                  className={
+                    activeTab === tab
+                      ? `${styles.menu} ${styles.activeTab}`
+                      : styles.menu
+                  }
+                  style={{
+                    backgroundColor: "white",
+                    // border: "none",
+                  }}
                 >
-                  {tab}
-                </p>
+                  <p style={{ margin: "1vh 0 1vh 0" }}>{tab}</p>
+                </button>
               ))}
             </div>
             <div className={styles.tabContent}>
               {activeTab === "메뉴" && <div>메뉴 내용</div>}
-              {activeTab === "리뷰" && <div>리뷰 내용</div>}
+              {activeTab === "리뷰" && (
+                <div>
+                  <div className={styles.flex1}>
+                    <div className={styles.flex}>
+                      <p style={{ color: "red" }}>별점 4.0</p>•<p>350명 참여</p>
+                    </div>
+                    <div>
+                      <button
+                        className={styles.reviewButton}
+                        onClick={openModal}
+                      >
+                        <img src={pen} style={{ width: "2vw" }}></img>
+                        <span className={styles.makeReview}>리뷰 작성</span>
+                      </button>
+                    </div>
+                  </div>
+                  <ReviewsComponent cafeId={selectedCafeId} />
+                </div>
+              )}
               {activeTab === "사진" && <div>사진 내용</div>}
               {activeTab === "정보" && <div>정보 내용</div>}
             </div>
           </div>
         </div>
       )}
+      <ReviewModal
+        cafeId={selectedCafeId}
+        isOpen={modalOpen}
+        onClose={closeModal2}
+      />
 
       {isMobile && (
-        <div
-          className={`${styles.modal} ${isModalVisible ? styles.visible : ""}`}
-        >
-          <div className={styles.div1}>
-            <h2 style={{ margin: "0px", fontFamily: "Pretendard" }}>
-              {modalData.name}
-            </h2>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <p style={{ margin: "0px", color: "red" }}>별점 4.0</p>
-              <img
-                src={line}
+        <>
+          <Header />
+          <div
+            className={`${styles.modal} ${
+              isModalVisible ? styles.visible : ""
+            }`}
+          >
+            <div className={styles.div1}>
+              <h2 style={{ margin: "0px", fontFamily: "Pretendard" }}>
+                {modalData.name}
+              </h2>
+              <div
                 style={{
-                  height: "2vh",
-                  margin: "0 0.5vw 0 0.5vw",
-                  width: "0.1vw",
-                }}
-              ></img>
-              {/* 추후 API 통신을 통해 서버에서 리뷰를 가져와 변경할 예정 */}
-              <p style={{ margin: "0px", color: "#796262" }}> 리뷰 490</p>
-            </div>
-            <div className={styles.div2}>
-              <p
-                style={{
-                  fontSize: "1.3em",
-                  color:
-                    modalData.count <= 15
-                      ? "#00F29B"
-                      : modalData.count > 15 && modalData.count <= 31
-                      ? "#FFC85F"
-                      : "#F96356",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
-                {modalData.count}
-              </p>
-              <p style={{ fontSize: "1.3em", color: "#796262" }}>
-                &nbsp;/&nbsp;45
-              </p>
-              <img
-                src={seatImagePath}
-                alt="Seat Status"
-                style={{ height: "3vh", marginLeft: "10px" }}
-              />
+                <p style={{ margin: "0px", color: "red" }}>별점 4.0</p>
+                <img
+                  src={line}
+                  style={{
+                    height: "2vh",
+                    margin: "0 0.5vw 0 0.5vw",
+                    width: "0.1vw",
+                  }}
+                ></img>
+                {/* 추후 API 통신을 통해 서버에서 리뷰를 가져와 변경할 예정 */}
+                <p style={{ margin: "0px", color: "#796262" }}> 리뷰 490</p>
+              </div>
+              <div className={styles.div2}>
+                <p
+                  style={{
+                    fontSize: "1.3em",
+                    color:
+                      modalData.count <= 15
+                        ? "#00F29B"
+                        : modalData.count > 15 && modalData.count <= 31
+                        ? "#FFC85F"
+                        : "#F96356",
+                  }}
+                >
+                  {modalData.count}
+                </p>
+                <p style={{ fontSize: "1.3em", color: "#796262" }}>
+                  &nbsp;/&nbsp;45
+                </p>
+                <img
+                  src={seatImagePath}
+                  alt="Seat Status"
+                  style={{ height: "3vh", marginLeft: "10px" }}
+                />
+              </div>
             </div>
-          </div>
-          <div className={styles.div4}>
-            {/* 추후 API 통신을 통해 서버에서 영업시간을 가져와 그에 따른 영업 유무 변경할 예정 */}
-            <p>영업 중</p>
-            <hr className={styles.hr} />
-            {/* 추후 API 통신을 통해 서버에서 시간을 가져와 변경할 예정 */}
-            <p style={{ color: "#796262" }}>23:00에 영업종료</p>
-          </div>
-          <div className={styles.div3}>
-            <span>주소</span>
-            <div>
-              <p style={{ color: "#796262" }}>{modalData.address}</p>
-              <button
-                className={styles.copyButton}
-                onClick={copyAddressToClipboard}
-              ></button>
+            <div className={styles.div4}>
+              {/* 추후 API 통신을 통해 서버에서 영업시간을 가져와 그에 따른 영업 유무 변경할 예정 */}
+              <p>영업 중</p>
+              <hr className={styles.hr} />
+              {/* 추후 API 통신을 통해 서버에서 시간을 가져와 변경할 예정 */}
+              <p style={{ color: "#796262" }}>23:00에 영업종료</p>
             </div>
+            <div className={styles.div3}>
+              <span>주소</span>
+              <div>
+                <p style={{ color: "#796262" }}>{modalData.address}</p>
+                <button
+                  className={styles.copyButton}
+                  onClick={copyAddressToClipboard}
+                ></button>
+              </div>
+            </div>
+            {isModalVisible && (
+              <div className={styles.modalBackdrop} onClick={closeModal}></div>
+            )}
           </div>
-        </div>
+        </>
       )}
     </>
   );

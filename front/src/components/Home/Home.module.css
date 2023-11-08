@@ -1,7 +1,24 @@
 @media (min-width: 1024px) {
   .title {
+    display: flex;
+    /* justify-content: center; */
     width: 100%;
-    margin: 3vh 0 3vh 10vw;
+    height: 100%;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .flex2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 40%;
+    width: 100%;
   }
 
   .h2 {
@@ -40,7 +57,7 @@
     text-align: center;
     margin-top: 1vh;
     margin-bottom: -1vh;
-    gap: 34vw;
+    gap: 36%;
   }
 
   .buttonContainer p {
@@ -118,9 +135,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 6vw;
-    height: 2vh;
-    padding: 0.7vw 0.7vw 0.7vw 0.7vw;
+    width: 5vw;
+    height: 1.5vh;
+    padding: 0.7vw 1vw 0.7vw 0.7vw;
     background-color: white;
     border-radius: 38px;
     border: 1px solid #d7cccb;
@@ -128,9 +145,8 @@
   }
 
   .CafeName {
-    font-size: 0.8em;
-    /* margin-bottom: -1vh; */
-    /* margin-top: 0px; */
+    font-size: 0.95em;
+    font-family: "AGW", sans-serif;
   }
 
   .theme {
@@ -142,8 +158,7 @@
     word-wrap: break-word; /* 긴 단어나 URL이 넘칠 때 줄바꿈 */
     white-space: normal; /* 줄바꿈을 허용하기 위해 추가 */
     font-size: 1em;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+    color: #444444;
   }
 
   .count {
@@ -195,8 +210,8 @@
   }
 
   .search_input {
-    padding-left: 5%;
-    width: 15vw;
+    padding-left: 10%;
+    width: 10vw;
     height: 4vh;
     border-radius: 32px;
     border: 1px solid #d7cccb;
@@ -212,7 +227,7 @@
 
   .magnifier_icon {
     position: absolute;
-    right: -3%;
+    right: -8%;
     top: 50%;
     transform: translateY(-50%);
     width: 2vw; /* 돋보기 이미지의 크기를 조절 */
@@ -236,6 +251,7 @@
     background-color: white;
     z-index: 1;
     opacity: 100%;
+    border: 1px solid #d7cccb;
   }
 
   .modal.visible {
@@ -275,7 +291,7 @@
   }
 
   .modalCafeName {
-    font-size: 1.3em;
+    font-size: 1em;
     margin: 0 0 0.3vh 0;
     font-family: "Pretendard";
   }
@@ -302,9 +318,10 @@
     display: flex;
     align-items: center;
     height: 5vh;
-    margin-left: 5%;
-    width: 90%;
+    margin-left: 3%;
     margin-top: 2vh;
+    padding: 1vh 0 1vh 0;
+    width: 94%;
     border-bottom: 1px solid lightgray;
     border-top: 1px solid lightgray;
   }
@@ -335,9 +352,50 @@
     display: flex;
     justify-content: space-evenly;
     border-bottom: 1px solid lightgray;
+    width: 94%;
+    margin-left: 3%;
   }
-  .menuList > p {
-    margin: 8px 0 10px 0;
+
+  .menu {
+    font-size: 1em;
+    color: #8e8180;
+    background-color: white;
+    border: none;
+  }
+
+  .activeTab {
+    font-weight: normal;
+    font-weight: 400;
+    color: black;
+    border-bottom: 3px solid black;
+    background-color: white;
+  }
+
+  .flex1 {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #d7cccb;
+    margin-left: 3%;
+    width: 94%;
+    justify-content: space-around;
+    gap: 27%;
+  }
+
+  .reviewButton {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 38px;
+    border: 1px solid #d7cccb;
+    padding-right: 1vw;
+    font-family: "Pretendard"; /* 원하는 폰트 패밀리로 변경 */
+    font-weight: 400;
+    /* width: 6vw; */
+  }
+
+  .makeReview {
+    font-weight: bold;
+    font-size: 1.1em;
   }
 }
 

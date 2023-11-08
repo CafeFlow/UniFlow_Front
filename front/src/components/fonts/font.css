@@ -4,6 +4,16 @@
 }
 
 @font-face {
+  font-family: "ABeeZee-Italic";
+  src: url("../fonts/ABeeZee-Italic.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "Pretendard";
-  src: url("../fonts/Pretendard-Regular.ttf") format("truetype");
+  src: url("./Pretendard-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard-semibold";
+  src: url("./Pretendard-SemiBold.woff") format("woff");
 }

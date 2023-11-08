@@ -1,14 +1,12 @@
 import React from "react";
-import cafeflowLogo from "../icons/CafeFlow.png";
-import search from "../icons/search.png";
 import styles from "./Header.module.css";
 
 const Header = ({ isTestButtonClicked, location, isModalVisible }) => {
   const goHome = () => {
-    window.location.replace("/home");
+    window.location.replace("/");
   };
 
-  console.log(location); // location 객체가 정상적으로 로그에 출력되는지 확인
+  // console.log(location); // location 객체가 정상적으로 로그에 출력되는지 확인
 
   // location이 "/"(인트로)일 경우 header가 보이지 않게끔 함
   if (location && location.pathname === "/") {
