@@ -81,6 +81,10 @@
     background-image: url("../icons/CafeFlow.png");
     background-size: cover;
   }
+
+  .hideOnDesktop {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -201,11 +205,5 @@
   0% {
     transform: translateY(100px) scale(0.3);
     opacity: 0;
-  }
-}
-
-.hideOnDesktop {
-  @media (min-width: 1024px) {
-    display: none;
   }
 }

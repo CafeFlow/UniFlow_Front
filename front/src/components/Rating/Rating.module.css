@@ -1,0 +1,21 @@
+.on {
+  background: none;
+  border: none;
+}
+
+.off {
+  background: none;
+  border: none;
+}
+
+button:focus {
+  outline: none; /* 버튼 클릭 시에 포커스 테두리 제거 */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 1%;
+  padding-bottom: 1vh;
+  border-bottom: 1px solid #efeaea;
+}
