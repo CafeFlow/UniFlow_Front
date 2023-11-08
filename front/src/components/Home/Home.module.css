@@ -242,12 +242,13 @@
 
   .modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 400px;
-    height: 100%;
+    overflow-y: scroll;
+    top: 17vh;
+    left: 140px;
+    width: 23vw;
+    height: 80vh;
     transition: transform 0.3s ease-out;
-    transform: translateX(-100%);
+    transform: translateX(-140%);
     background-color: white;
     z-index: 1;
     opacity: 100%;
@@ -291,9 +292,9 @@
   }
 
   .modalCafeName {
-    font-size: 1em;
+    font-size: 1.3em;
     margin: 0 0 0.3vh 0;
-    font-family: "Pretendard";
+    font-family: "Pretendard-SemiBold", sans-serif;
   }
 
   .div2 {
@@ -303,7 +304,7 @@
     /* margin-top: -1vh; */
     border: 1px solid #d7cccb;
     border-radius: 38px;
-    width: 10vw;
+    width: 7vw;
     height: 5vh;
   }
 
@@ -344,6 +345,11 @@
     border: none;
   }
 
+  .copy {
+    font-family: "ABeeZee", sans-serif;
+    color: red;
+  }
+
   .seperateLine {
     width: 100%;
   }
@@ -361,13 +367,14 @@
     color: #8e8180;
     background-color: white;
     border: none;
+    /* width: 3vw; */
   }
 
   .activeTab {
     font-weight: normal;
-    font-weight: 400;
+    font-weight: bold;
     color: black;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid #d7cccb;
     background-color: white;
   }
 
@@ -378,7 +385,7 @@
     margin-left: 3%;
     width: 94%;
     justify-content: space-around;
-    gap: 27%;
+    gap: 25%;
   }
 
   .reviewButton {
@@ -396,6 +403,81 @@
   .makeReview {
     font-weight: bold;
     font-size: 1.1em;
+  }
+
+  .container3 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+  }
+
+  .container2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: -1vh;
+    /* margin-right: 1vw; */
+  }
+
+  .flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .star {
+    font-size: 1em;
+    font-family: "Pretendard-semibold", sans-serif;
+    /* font-weight: bolder; */
+  }
+  .reviewSize {
+    font-family: "ABeeZee", sans-serif;
+    font-style: italic;
+    color: #8e8180;
+  }
+
+  .unKnown {
+    font-family: "Pretendard-semibold", sans-serif;
+    font-weight: bolder;
+  }
+
+  .starr {
+    width: 1vw;
+  }
+
+  .rate {
+    font-family: "ABeeZee-Italic", sans-serif;
+    font-style: italic;
+    color: #f96356;
+    margin-bottom: 0.8vw;
+  }
+
+  .time {
+    font-family: "ABeeZee-Italic", sans-serif;
+    font-style: italic;
+    color: #8e8180;
+    font-size: 0.7em;
+  }
+
+  .commentBox {
+    width: 100%;
+  }
+
+  .comment {
+    margin: 0px;
+    width: 100%;
+    display: flex;
+    /* margin-left: 5%; */
+    padding-bottom: 2vh;
+    border-bottom: 1px solid #efeaea;
+  }
+
+  .reviewBox {
+    margin-left: 5%;
+    margin-bottom: 0px;
+  }
+
+  .bigContainer1 {
+    width: 95%;
   }
 }
 
