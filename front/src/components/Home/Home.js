@@ -14,8 +14,6 @@ import filledGreen from "../icons/filledGreen.png";
 import filledYellow from "../icons/filledYellow.png";
 import filledRed from "../icons/filledRed.png";
 import line from "../icons/line.png";
-import mail1 from "../icons/mail1.png";
-import DisplayAds from "../DisplayAds/DisplayAds";
 import CafeFlow from "../icons/CafeFlow.png";
 import circle from "../icons/circle.png";
 import seperateLine from "../icons/seperateLine.png";
@@ -34,6 +32,13 @@ const Home = ({
   const [reviewSize, setReviewSize] = useState(0);
   const [averRating, setAverRating] = useState(0);
   const [selectedCafeId, setSelectedCafeId] = useState(null);
+
+  const [toggleOpen, settoggleOpen] = useState(false);
+
+  // 드롭다운 토글 함수
+  const toggleDropdown = () => {
+    settoggleOpen(!toggleOpen);
+  };
 
   // 서버로부터 리뷰 데이터를 가져오는 함수
   const fetchReviews = async () => {
@@ -92,6 +97,7 @@ const Home = ({
     query: "(max-width:768px)",
   });
 
+  const [mapHeight, setMapHeight] = useState("100vh");
   const [activeTab, setActiveTab] = useState("메뉴");
 
   const handleCafeClick = (id) => {
@@ -120,10 +126,12 @@ const Home = ({
   const handleUnivButtonClick = (lat, lng, univName) => {
     setCenter({ lat, lng });
     setSelectedButton(univName);
+    settoggleOpen(false); // 선택 후 드롭다운 닫기
     setHideUI(true); // UI 숨김 상태 변경
     setMoveUp(true); // UI 움직임 상태 변경
     setIsTestButtonClicked(true);
     setShowMessage(false);
+    setMapHeight("80vh");
   };
 
   useEffect(() => {
@@ -275,6 +283,7 @@ const Home = ({
             });
             // setIsTestButtonClicked(true);
             setActiveOverlay(overlayContainer);
+            setIsTestButtonClicked(true);
 
             // count 값에 따른 이미지와 텍스트 색상 설정
             if (element.count <= 15) {
@@ -304,7 +313,6 @@ const Home = ({
   }, [center]);
 
   const calculatedHeight = `calc(100vh + ${reviewSize * 25}px)`;
-  console.log(calculatedHeight);
   return (
     <>
       {/* 데스크탑 버전 */}
@@ -316,92 +324,141 @@ const Home = ({
             <div className={styles.flex2}>
               <div className={styles.flex}>
                 <img src={CafeFlow} className={styles.desktopLogo}></img>
-                <p className={styles.h2}>CafeFlow</p>
-              </div>
-              <div className={styles.inputContainer}>
-                <div className={styles.search_container}>
-                  <input
-                    className={`${styles.search_input} ${
-                      hideUI ? styles.hideElement : ""
-                    }`}
-                  />
-                  <img
-                    src={line}
-                    className={`${styles.line} ${
-                      hideUI ? styles.hideElement : ""
-                    }`}
-                  />
-                  <img
-                    src={searchButton}
-                    className={`${styles.magnifier_icon} ${
-                      hideUI ? styles.hideElement : ""
-                    }`}
-                  />
+                <p className={styles.h2}>Uni.Flow</p>
+                <div className={styles.flex} style={{ marginLeft: "1vw" }}>
+                  {/* <button
+                    className={styles.toggleButton}
+                    onClick={toggleDropdown}
+                  >
+                    {toggleOpen ? "연세대" : "세종대"}
+                  </button> */}
+                  {/* {toggleOpen && (
+                    <ul
+                      className={styles.flex}
+                      style={{
+                        margin: "0px",
+                        marginLeft: "5%",
+                      }}
+                    > */}
+                  <button
+                    style={{
+                      marginRight: "5px",
+                      borderRadius: "32px",
+                      borderColor:
+                        selectedButton === "세종대" ? "#6156E2" : "#D7CCCB",
+                    }}
+                    className={styles.univButton}
+                    onClick={() =>
+                      handleUnivButtonClick(37.550433, 127.074055, "세종대")
+                    }
+                  >
+                    <p className={styles.school}>세종대</p>
+                  </button>
+                  {/* <button
+                        style={{
+                          marginRight: "5px",
+                          borderRadius: "32px",
+                          borderColor:
+                            selectedButton === "건국대" ? "#6156E2" : "#D7CCCB",
+                        }}
+                        className={styles.univButton}
+                        onClick={() =>
+                          handleUnivButtonClick(37.54313, 127.077501, "건국대")
+                        }
+                      >
+                        <p className={styles.school}>건국대</p>
+                      </button> */}
+                  <button
+                    style={{
+                      borderRadius: "32px",
+                      borderColor:
+                        selectedButton === "연세대" ? "#6156E2" : "#D7CCCB",
+                    }}
+                    className={styles.univButton}
+                    onClick={() =>
+                      handleUnivButtonClick(37.564572, 126.9386, "연세대")
+                    }
+                  >
+                    <p className={styles.school}>연세대</p>
+                  </button>
+                  {/* </ul> */}
+                  {/* )} */}
                 </div>
-                <img src={mail1} className={styles.mail1}></img>
               </div>
             </div>
           </div>
         </>
       )}
       {/* 모바일 버전 */}
-      {!isModalVisible && isMobile && (
+      {isMobile && (
         <>
           <Header />
-          <div
-            className={`${styles.title} ${hideUI ? styles.hideElement : ""}`}
-          >
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <img src={CafeFlow} className={styles.desktopLogo}></img>
-              <p className={styles.h2}>CafeFlow</p>
+          {!isModalVisible && (
+            <div
+              className={`${styles.title} ${hideUI ? styles.hideElement : ""}`}
+            >
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <img src={CafeFlow} className={styles.desktopLogo}></img>
+                <p className={styles.h2}>CafeFlow</p>
+              </div>
             </div>
-          </div>
-          {showMessage && (
+          )}
+          {!isModalVisible && showMessage && (
             <div className={styles.confirm}>
               <p className={styles.p}>
                 카페플로우를 통해 카페 내 현재 사람 수를 확인하세요
               </p>
             </div>
           )}
-          <div className={styles.inputContainer}>
-            <div className={styles.search_container}>
-              <input
-                className={`${styles.search_input} ${
-                  hideUI ? styles.hideElement : ""
-                }`}
-              />
-              <img
-                src={line}
-                className={`${styles.line} ${hideUI ? styles.hideElement : ""}`}
-              />
-              <img
-                src={searchButton}
-                className={`${styles.magnifier_icon} ${
-                  hideUI ? styles.hideElement : ""
-                }`}
-              />
+          {!isModalVisible && (
+            <div className={styles.inputContainer}>
+              <div className={styles.search_container}>
+                <input
+                  className={`${styles.search_input} ${
+                    hideUI ? styles.hideElement : ""
+                  }`}
+                />
+                <img
+                  src={line}
+                  className={`${styles.line} ${
+                    hideUI ? styles.hideElement : ""
+                  }`}
+                />
+                <img
+                  src={searchButton}
+                  className={`${styles.magnifier_icon} ${
+                    hideUI ? styles.hideElement : ""
+                  }`}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </>
       )}
       {isPc && (
-        <div
-          className={
-            isModalVisible
-              ? styles.buttonContainer
-              : moveUp
-              ? `${styles.buttonContainer} ${styles.moveUp}`
-              : styles.buttonContainer
-          }
-        >
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img src={circle} className={styles.circle}></img>
-            <span className={styles.p}>
-              카페플로우를 통해 카페 내 현재 사람 수를 확인하세요
-            </span>
-          </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <span className={styles.choose}>대학교 선택</span>
+        <>
+          <div
+            className={
+              isModalVisible
+                ? styles.buttonContainer
+                : moveUp
+                ? `${styles.buttonContainer} ${styles.moveUp}`
+                : styles.buttonContainer
+            }
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <img src={circle} className={styles.circle}></img>
+              <span className={styles.p}>
+                카페플로우를 통해 카페 내 현재 사람 수를 확인하세요
+              </span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {/* <span className={styles.choose}>대학교 선택</span>
             <img
               src={line}
               style={{
@@ -409,50 +466,22 @@ const Home = ({
                 margin: "0 0.5vw 0 0.5vw",
                 width: "0.1vw",
               }}
-            ></img>
-            <button
-              style={{
-                marginRight: "5px",
-                borderRadius: "32px",
-                borderColor:
-                  selectedButton === "세종대" ? "#F96356" : "#D7CCCB",
-              }}
-              className={styles.univButton}
-              onClick={() =>
-                handleUnivButtonClick(37.550433, 127.074055, "세종대")
-              }
-            >
-              <p className={styles.school}>세종대</p>
-            </button>
-            <button
-              style={{
-                marginRight: "5px",
-                borderRadius: "32px",
-                borderColor:
-                  selectedButton === "건국대" ? "#F96356" : "#D7CCCB",
-              }}
-              className={styles.univButton}
-              onClick={() =>
-                handleUnivButtonClick(37.54313, 127.077501, "건국대")
-              }
-            >
-              <p className="school">건국대</p>
-            </button>
-            <button
-              style={{
-                borderRadius: "32px",
-                borderColor:
-                  selectedButton === "연세대" ? "#F96356" : "#D7CCCB",
-              }}
-              className={styles.univButton}
-              onClick={() =>
-                handleUnivButtonClick(37.564572, 126.9386, "연세대")
-              }
-            >
-              <p className="school">연세대</p>
-            </button>
+            ></img> */}
+              <div className={styles.flex}>
+                <p>대학교 선택</p>
+                <hr className={styles.hr} />
+              </div>
+            </div>
           </div>
-        </div>
+          <hr
+            style={{
+              width: "100%",
+              border: "1px solid #F7F4F4",
+              marginTop: "2vh",
+              marginBottom: "-1vh",
+            }}
+          />
+        </>
       )}
       {isMobile && (
         <div
@@ -468,7 +497,7 @@ const Home = ({
             style={{
               marginRight: "10px",
               borderRadius: "32px",
-              borderColor: selectedButton === "세종대" ? "#F96356" : "#D7CCCB",
+              borderColor: selectedButton === "세종대" ? "#6156E2" : "#D7CCCB",
             }}
             className={styles.univButton}
             onClick={() =>
@@ -480,14 +509,14 @@ const Home = ({
           <button
             style={{
               borderRadius: "32px",
-              borderColor: selectedButton === "건국대" ? "#F96356" : "#D7CCCB",
+              borderColor: selectedButton === "건국대" ? "#6156E2" : "#D7CCCB",
             }}
             className={styles.univButton}
             onClick={() =>
               handleUnivButtonClick(37.54313, 127.077501, "건국대")
             }
           >
-            <p className="school">건국대</p>
+            <p className={styles.school}>건국대</p>
           </button>
           {isModalVisible && (
             <div className={styles.modalBackdrop} onClick={closeModal}></div>
@@ -516,6 +545,8 @@ const Home = ({
           {/* <DisplayAds /> */}
         </div>
       </div>
+
+      {/* 데스크탑 버전 */}
       {isPc && (
         <div
           className={`${styles.modal} ${isModalVisible ? styles.visible : ""}`}
@@ -563,14 +594,11 @@ const Home = ({
             </div>
           </div>
           <div className={styles.div4}>
-            {/* 추후 API 통신을 통해 서버에서 영업시간을 가져와 그에 따른 영업 유무 변경할 예정 */}
             <p style={{ marginLeft: "2%" }}>영업 중</p>
             <hr className={styles.hr} />
-            {/* 추후 API 통신을 통해 서버에서 시간을 가져와 변경할 예정 */}
             <p style={{ color: "#796262" }}>23:00에 영업종료</p>
           </div>
           <div className={styles.div3}>
-            {/* <span style={{ marginTop: "2vh" }}>주소</span> */}
             <div style={{ display: "flex", alignItems: "center" }}>
               <p className={styles.address}>{modalData.address}</p>
               <button
@@ -672,24 +700,30 @@ const Home = ({
       />
 
       {isMobile && (
-        <>
-          <Header />
-          <div
-            className={`${styles.modal} ${
-              isModalVisible ? styles.visible : ""
-            }`}
-          >
-            <div className={styles.div1}>
-              <h2 style={{ margin: "0px", fontFamily: "Pretendard" }}>
+        <div
+          className={`${styles.modal} ${isModalVisible ? styles.visible : ""}`}
+        >
+          <div className={styles.div1}>
+            <div>
+              <p
+                style={{
+                  margin: "0px",
+                  fontFamily: "Pretendard",
+                  marginBottom: "0.5vh",
+                  fontSize: "1.3em",
+                }}
+              >
                 {modalData.name}
-              </h2>
+              </p>
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
                 }}
               >
-                <p style={{ margin: "0px", color: "red" }}>별점 {averRating}</p>
+                <p style={{ margin: "0px", color: "red" }}>
+                  별점 {averRating}&nbsp;
+                </p>
                 <img
                   src={line}
                   style={{
@@ -698,58 +732,65 @@ const Home = ({
                     width: "0.1vw",
                   }}
                 ></img>
-                {/* 추후 API 통신을 통해 서버에서 리뷰를 가져와 변경할 예정 */}
                 <p style={{ margin: "0px", color: "#796262" }}>
-                  {" "}
-                  리뷰 {reviewSize}
+                  &nbsp;리뷰 {reviewSize}
                 </p>
               </div>
-              <div className={styles.div2}>
-                <p
-                  style={{
-                    fontSize: "1.3em",
-                    color:
-                      modalData.count <= 15
-                        ? "#00F29B"
-                        : modalData.count > 15 && modalData.count <= 31
-                        ? "#FFC85F"
-                        : "#F96356",
-                  }}
-                >
-                  {modalData.count}
-                </p>
-                <p style={{ fontSize: "1.3em", color: "#796262" }}>
-                  &nbsp;/&nbsp;45
-                </p>
-                <img
-                  src={seatImagePath}
-                  alt="Seat Status"
-                  style={{ height: "3vh", marginLeft: "10px" }}
-                />
-              </div>
             </div>
-            <div className={styles.div4}>
-              {/* 추후 API 통신을 통해 서버에서 영업시간을 가져와 그에 따른 영업 유무 변경할 예정 */}
-              <p>영업 중</p>
-              <hr className={styles.hr} />
-              {/* 추후 API 통신을 통해 서버에서 시간을 가져와 변경할 예정 */}
-              <p style={{ color: "#796262" }}>23:00에 영업종료</p>
+            <div className={styles.div2}>
+              <p
+                style={{
+                  fontSize: "1.3em",
+                  fontFamily: "ABeeZee",
+                  color:
+                    modalData.count <= 15
+                      ? "#00F29B"
+                      : modalData.count > 15 && modalData.count <= 31
+                      ? "#FFC85F"
+                      : "#F96356",
+                }}
+              >
+                {modalData.count}
+              </p>
+              <p
+                style={{
+                  fontSize: "1.3em",
+                  color: "#796262",
+                  fontFamily: "ABeeZee",
+                }}
+              >
+                &nbsp;/&nbsp;45
+              </p>
+              <img
+                src={seatImagePath}
+                alt="Seat Status"
+                style={{ height: "3vh", marginLeft: "10px" }}
+              />
             </div>
-            <div className={styles.div3}>
-              <span>주소</span>
-              <div>
-                <p style={{ color: "#796262" }}>{modalData.address}</p>
-                <button
-                  className={styles.copyButton}
-                  onClick={copyAddressToClipboard}
-                ></button>
-              </div>
-            </div>
-            {isModalVisible && (
-              <div className={styles.modalBackdrop} onClick={closeModal}></div>
-            )}
           </div>
-        </>
+          <div className={styles.div4}>
+            <p>영업 중&nbsp;</p>
+            <img
+              src={line}
+              style={{
+                height: "2vh",
+                margin: "0 0.5vw 0 0.5vw",
+                width: "0.1vw",
+              }}
+            ></img>
+            <p style={{ color: "#796262" }}>&nbsp;23:00에 영업종료</p>
+          </div>
+          <div className={styles.div3}>
+            <p style={{ color: "#796262" }}>{modalData.address}</p>
+            <button
+              className={styles.copyButton}
+              onClick={copyAddressToClipboard}
+            ></button>
+          </div>
+          {/* {isModalVisible && (
+              <div className={styles.modalBackdrop} onClick={closeModal}></div>
+            )} */}
+        </div>
       )}
     </>
   );

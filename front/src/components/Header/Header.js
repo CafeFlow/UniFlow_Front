@@ -24,7 +24,7 @@ const Header = ({ isTestButtonClicked, location, isModalVisible }) => {
         {isTestButtonClicked && <p className={styles.cafeflowText}>CafeFlow</p>}
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
-        {!isTestButtonClicked ? (
+        {isTestButtonClicked ? (
           <button className={styles.button2}></button>
         ) : (
           <button className={styles.search}></button>
