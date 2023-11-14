@@ -324,7 +324,7 @@ const Home = ({
             <div className={styles.flex2}>
               <div className={styles.flex}>
                 <img src={CafeFlow} className={styles.desktopLogo}></img>
-                <p className={styles.h2}>Uni.Flow</p>
+                <p className={styles.h2}>Uni.flow</p>
                 <div className={styles.flex} style={{ marginLeft: "1vw" }}>
                   {/* <button
                     className={styles.toggleButton}
@@ -354,20 +354,6 @@ const Home = ({
                   >
                     <p className={styles.school}>세종대</p>
                   </button>
-                  {/* <button
-                        style={{
-                          marginRight: "5px",
-                          borderRadius: "32px",
-                          borderColor:
-                            selectedButton === "건국대" ? "#6156E2" : "#D7CCCB",
-                        }}
-                        className={styles.univButton}
-                        onClick={() =>
-                          handleUnivButtonClick(37.54313, 127.077501, "건국대")
-                        }
-                      >
-                        <p className={styles.school}>건국대</p>
-                      </button> */}
                   <button
                     style={{
                       borderRadius: "32px",
@@ -399,14 +385,14 @@ const Home = ({
             >
               <div style={{ display: "flex", alignItems: "center" }}>
                 <img src={CafeFlow} className={styles.desktopLogo}></img>
-                <p className={styles.h2}>CafeFlow</p>
+                <p className={styles.h2}>Uni.flow</p>
               </div>
             </div>
           )}
           {!isModalVisible && showMessage && (
             <div className={styles.confirm}>
               <p className={styles.p}>
-                카페플로우를 통해 카페 내 현재 사람 수를 확인하세요
+                Uni.flow를 통해 카페 내 현재 사람 수를 확인하세요
               </p>
             </div>
           )}
@@ -454,7 +440,7 @@ const Home = ({
             >
               <img src={circle} className={styles.circle}></img>
               <span className={styles.p}>
-                카페플로우를 통해 카페 내 현재 사람 수를 확인하세요
+                Uni.flow를 통해 카페 내 현재 사람 수를 확인하세요
               </span>
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
@@ -468,7 +454,7 @@ const Home = ({
               }}
             ></img> */}
               <div className={styles.flex}>
-                <p>대학교 선택</p>
+                {/* <p>대학교 선택</p> */}
                 <hr className={styles.hr} />
               </div>
             </div>
