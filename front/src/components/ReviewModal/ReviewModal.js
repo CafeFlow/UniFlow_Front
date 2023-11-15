@@ -12,6 +12,18 @@ const ReviewModal = ({ isOpen, onClose, cafeId }) => {
 
   // 리뷰 전송 함수
   const handleConfirm = async () => {
+    // 별점이나 리뷰 내용이 없는 경우 경고 메시지 표시
+    if (rating === 0) {
+      alert("별점을 클릭해주세요!");
+      console.log("별점을 클릭해주세요!");
+      return;
+    }
+    if (reviewText.trim() === "") {
+      alert("내용을 입력해주세요!");
+      console.log("내용을 입력해주세요!");
+      return;
+    }
+
     // 서버에 전송할 데이터 객체
     const reviewData = {
       rate: rating,
@@ -50,6 +62,8 @@ const ReviewModal = ({ isOpen, onClose, cafeId }) => {
 
   // 모달을 닫을 때의 처리.
   const handleClose = () => {
+    setRating(0);
+    setReviewText("");
     setModalClass(styles.hidden); // 먼저 모달을 아래로 슬라이드
     setTimeout(onClose, 300); // CSS 애니메이션 시간 후에 모달 상태를 변경
   };
@@ -99,7 +113,7 @@ const ReviewModal = ({ isOpen, onClose, cafeId }) => {
           </button>
           {/* button2에 onConfirm 달아야함 */}
           <button className={styles.button2} onClick={handleConfirm}>
-            <p className={styles.pretendard}>확인</p>
+            <p className={styles.pretendard2}>확인</p>
           </button>
         </div>
       </div>

@@ -51,9 +51,6 @@ const ReviewsComponent = ({ cafeId }) => {
 
   return (
     <div>
-      <h3 className={styles.reviewBox}>
-        리뷰 {reviewSize}개, 평균 별점 {averRating}점
-      </h3>
       <div className={styles.bigContainer}>
         {reviews.map((review) => (
           <div key={review.id} className={styles.container}>
