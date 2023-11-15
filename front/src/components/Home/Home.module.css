@@ -364,7 +364,7 @@
 
   .copy {
     font-family: "ABeeZee", sans-serif;
-    color: red;
+    color: #6156e2;
   }
 
   .seperateLine {
@@ -573,7 +573,7 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 80vh;
+    height: 100vh;
     border: 1px solid lightgray;
     transition: all 0.5s ease-in-out; /* 추가된 부분 */
   }
@@ -610,6 +610,25 @@
     margin-top: 1vh;
     /* animation: flyAway 1.3s forwards; */
     /* transition: transform 1s ease-in-out;  */
+  }
+
+  .choose {
+    display: flex;
+    align-items: center;
+    /* gap: 5%; */
+    margin: 0px;
+  }
+
+  .chooseButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12vw;
+    height: 3.5vh;
+    background-color: white;
+    border-radius: 38px;
+    border: 1px solid #d9d9d9;
+    margin: 0px;
   }
 
   .moveUp {

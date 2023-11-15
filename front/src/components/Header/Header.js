@@ -1,7 +1,13 @@
 import React from "react";
 import styles from "./Header.module.css";
+import styles1 from "../Home/Home.module.css";
 
-const Header = ({ isTestButtonClicked, location, isModalVisible }) => {
+const Header = ({
+  isTestButtonClicked,
+  location,
+  selectedButton,
+  handleUnivButtonClick,
+}) => {
   const goHome = () => {
     window.location.replace("/");
   };
@@ -16,20 +22,34 @@ const Header = ({ isTestButtonClicked, location, isModalVisible }) => {
   return (
     <div
       className={`${
-        isTestButtonClicked ? styles.container2 : styles.container
+        isTestButtonClicked ? styles.container : styles.container
       } ${styles.hideOnDesktop}`}
     >
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ display: "flex", alignItems: "center", marginLeft: "4%" }}>
         <button className={styles.button1} onClick={goHome}></button>
-        {isTestButtonClicked && <p className={styles.cafeflowText}>CafeFlow</p>}
+        <p className={styles.cafeflowText}>Uni.flow</p>
       </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
-        {isTestButtonClicked ? (
-          <button className={styles.button2}></button>
-        ) : (
-          <button className={styles.search}></button>
-        )}
-      </div>
+      <button
+        style={{
+          marginRight: "10px",
+          borderRadius: "32px",
+          borderColor: selectedButton === "세종대" ? "#6156E2" : "#D7CCCB",
+        }}
+        className={styles1.univButton}
+        onClick={() => handleUnivButtonClick(37.550433, 127.074055, "세종대")}
+      >
+        <p className={styles1.school}>세종대</p>
+      </button>
+      {/* <button
+        style={{
+          borderRadius: "32px",
+          borderColor: selectedButton === "건국대" ? "#6156E2" : "#D7CCCB",
+        }}
+        className={styles1.univButton}
+        onClick={() => handleUnivButtonClick(37.54313, 127.077501, "건국대")}
+      >
+        <p className={styles1.school}>건국대</p>
+      </button> */}
     </div>
   );
 };
