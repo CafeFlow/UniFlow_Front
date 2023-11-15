@@ -1,133 +1,278 @@
-.reviewModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.34);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* z-index를 높게 설정하여 다른 요소들 위에 오도록 합니다. */
+@media (min-width: 768px) {
+  .reviewModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.34);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* z-index를 높게 설정하여 다른 요소들 위에 오도록 합니다. */
+  }
+
+  /* 모달이 아래로 숨겨진 상태의 스타일 */
+  .reviewModal.hidden {
+    transform: translateY(100%); /* 화면 아래로 숨깁니다. */
+  }
+
+  .modalContent {
+    border: 1px solid #d7cccb;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 20%;
+    z-index: 1001; /* 모달 내용이 모달 배경보다 앞에 오도록 z-index를 설정합니다. */
+  }
+
+  .reviewBoxTop {
+    border-bottom: 1px solid #d7cccb;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2vh;
+  }
+
+  .reviewTop {
+    margin: 0 -1vw 0 0;
+    font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
+  }
+
+  .reviewTitle {
+    flex: 1;
+    text-align: center; /* 제목을 중앙 정렬 */
+  }
+
+  .closeButton {
+    cursor: pointer; /* 마우스 오버시 포인터 모양을 변경 */
+    display: flex; /* flex를 사용하여 이미지를 중앙에 위치 */
+    justify-content: flex-end; /* 이미지를 오른쪽 끝으로 정렬 */
+  }
+
+  .close {
+    width: 1.5vw;
+    height: 1.5vw;
+  }
+
+  .about {
+    display: flex;
+    justify-content: center;
+    font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
+    font-weight: 400;
+  }
+
+  .highlight {
+    font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
+    font-size: 16px; /* 원하는 크기로 설정 */
+    color: #6156e2;
+  }
+
+  .reviewInputBox {
+    display: flex;
+    justify-content: center;
+  }
+
+  textarea::placeholder {
+    font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
+    font-size: 16px; /* 원하는 크기로 설정 */
+    color: #8e8180; /* 원하는 색상으로 설정 */
+  }
+
+  .reviewInput {
+    display: flex;
+    justify-content: center;
+    width: 20vw;
+    height: 23vh;
+    border: 1px solid #efeaea;
+    border-radius: 4px;
+    padding: 10px;
+    resize: none; /* 사용자가 직접 크기를 조정하는 것을 방지 */
+    overflow: auto; /* 내용이 많아질 경우 스크롤바를 자동으로 생성 */
+  }
+
+  .bottomButton {
+    display: flex;
+    justify-content: end;
+    margin-top: 2vh;
+    gap: 1%;
+  }
+
+  .button1 {
+    font-family: "Pretendard";
+    background-color: #f8f8f8;
+    border: none;
+    border-radius: 8px;
+    width: 4vw;
+    height: 4vh;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button2 {
+    background-color: #6156e2;
+    border: none;
+    border-radius: 8px;
+    width: 4vw;
+    height: 4vh;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pretendard {
+    font-family: "Pretendard";
+    font-weight: 400;
+    color: #444444;
+  }
+  .pretendard2 {
+    font-family: "Pretendard";
+    font-weight: 400;
+    color: #fff;
+  }
 }
 
-/* 모달이 아래로 숨겨진 상태의 스타일 */
-.reviewModal.hidden {
-  transform: translateY(100%); /* 화면 아래로 숨깁니다. */
-}
+@media (max-width: 768px) {
+  .reviewModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.34);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* z-index를 높게 설정하여 다른 요소들 위에 오도록 합니다. */
+  }
 
-.modalContent {
-  border: 1px solid #d7cccb;
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 20%;
-  z-index: 1001; /* 모달 내용이 모달 배경보다 앞에 오도록 z-index를 설정합니다. */
-}
+  /* 모달이 아래로 숨겨진 상태의 스타일 */
+  .reviewModal.hidden {
+    transform: translateY(100%); /* 화면 아래로 숨깁니다. */
+  }
 
-.reviewBoxTop {
-  border-bottom: 1px solid #d7cccb;
-  margin: 0px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 2vh;
-}
+  .modalContent {
+    border: 1px solid #d7cccb;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 70%;
+    z-index: 1001; /* 모달 내용이 모달 배경보다 앞에 오도록 z-index를 설정합니다. */
+  }
 
-.reviewTop {
-  margin: 0 -1vw 0 0;
-  font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
-}
+  .reviewBoxTop {
+    border-bottom: 1px solid #d7cccb;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2vh;
+  }
 
-.reviewTitle {
-  flex: 1;
-  text-align: center; /* 제목을 중앙 정렬 */
-}
+  .reviewTop {
+    margin: 0 -1vw 0 0;
+    font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
+  }
 
-.closeButton {
-  cursor: pointer; /* 마우스 오버시 포인터 모양을 변경 */
-  display: flex; /* flex를 사용하여 이미지를 중앙에 위치 */
-  justify-content: flex-end; /* 이미지를 오른쪽 끝으로 정렬 */
-}
+  .reviewTitle {
+    flex: 1;
+    text-align: center; /* 제목을 중앙 정렬 */
+  }
 
-.close {
-  width: 1.5vw;
-  height: 1.5vw;
-}
+  .closeButton {
+    cursor: pointer; /* 마우스 오버시 포인터 모양을 변경 */
+    display: flex; /* flex를 사용하여 이미지를 중앙에 위치 */
+    justify-content: flex-end; /* 이미지를 오른쪽 끝으로 정렬 */
+  }
 
-.about {
-  display: flex;
-  justify-content: center;
-  font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
-  font-weight: 400;
-}
+  .close {
+    width: 3vw;
+    height: 3vw;
+  }
 
-.highlight {
-  font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
-  font-size: 16px; /* 원하는 크기로 설정 */
-  color: #f96356;
-}
+  .about {
+    display: flex;
+    justify-content: center;
+    font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
+    font-weight: 400;
+  }
 
-.reviewInputBox {
-  display: flex;
-  justify-content: center;
-}
+  .highlight {
+    font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
+    font-size: 16px; /* 원하는 크기로 설정 */
+    color: #6156e2;
+  }
 
-textarea::placeholder {
-  font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
-  font-size: 16px; /* 원하는 크기로 설정 */
-  color: #8e8180; /* 원하는 색상으로 설정 */
-}
+  .reviewInputBox {
+    display: flex;
+    justify-content: center;
+  }
 
-.reviewInput {
-  display: flex;
-  justify-content: center;
-  width: 20vw;
-  height: 23vh;
-  border: 1px solid #efeaea;
-  border-radius: 4px;
-  padding: 10px;
-  resize: none; /* 사용자가 직접 크기를 조정하는 것을 방지 */
-  overflow: auto; /* 내용이 많아질 경우 스크롤바를 자동으로 생성 */
-}
+  textarea::placeholder {
+    font-family: "Pretendard", sans-serif; /* 원하는 폰트 패밀리로 변경 */
+    font-size: 16px; /* 원하는 크기로 설정 */
+    color: #8e8180; /* 원하는 색상으로 설정 */
+  }
 
-.bottomButton {
-  display: flex;
-  justify-content: end;
-  margin-top: 2vh;
-  gap: 1%;
-}
+  .reviewInput {
+    display: flex;
+    justify-content: center;
+    width: 70vw;
+    height: 23vh;
+    border: 1px solid #efeaea;
+    border-radius: 4px;
+    padding: 10px;
+    resize: none; /* 사용자가 직접 크기를 조정하는 것을 방지 */
+    overflow: auto; /* 내용이 많아질 경우 스크롤바를 자동으로 생성 */
+  }
 
-.button1 {
-  font-family: "Pretendard";
-  background-color: #f8f8f8;
-  border: none;
-  border-radius: 8px;
-  width: 4vw;
-  height: 4vh;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .bottomButton {
+    display: flex;
+    justify-content: end;
+    margin-top: 2vh;
+    gap: 1%;
+  }
 
-.button2 {
-  background-color: #f96356;
-  border: none;
-  border-radius: 8px;
-  width: 4vw;
-  height: 4vh;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .button1 {
+    font-family: "Pretendard";
+    background-color: #f8f8f8;
+    border: none;
+    border-radius: 8px;
+    width: 15vw;
+    height: 4vh;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.pretendard {
-  font-family: "Pretendard";
-  font-weight: 400;
-}
+  .button2 {
+    background-color: #6156e2;
+    border: none;
+    border-radius: 8px;
+    width: 15vw;
+    height: 4vh;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .pretendard {
+    font-family: "Pretendard";
+    font-weight: 400;
+    color: #444444;
+  }
+  .pretendard2 {
+    font-family: "Pretendard";
+    font-weight: 400;
+    color: #fff;
+  }
+}
 @keyframes flyAway {
   100% {
     transform: translateY(0) scale(1);
