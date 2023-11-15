@@ -131,7 +131,7 @@ const Home = ({
     setCenter({ lat, lng });
     setSelectedButton(univName);
     setHideUI(true); // UI 숨김 상태 변경
-    setMoveUp(true); // UI 움직임 상태 변경
+    // setMoveUp(true); // UI 움직임 상태 변경
     setIsTestButtonClicked(true);
     setShowMessage(false);
     setMapHeight("80vh");
@@ -353,8 +353,6 @@ const Home = ({
                   >
                     <p className={styles.school}>연세대</p>
                   </button>
-                  {/* </ul> */}
-                  {/* )} */}
                 </div>
               </div>
             </div>
@@ -364,47 +362,12 @@ const Home = ({
       {/* 모바일 버전 */}
       {isMobile && (
         <>
-          <Header />
-          {!isModalVisible && (
-            <div
-              className={`${styles.title} ${hideUI ? styles.hideElement : ""}`}
-            >
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <img src={CafeFlow} className={styles.desktopLogo}></img>
-                <p className={styles.h2}>Uni.flow</p>
-              </div>
-            </div>
-          )}
-          {!isModalVisible && showMessage && (
-            <div className={styles.confirm}>
-              <p className={styles.p}>
-                Uni.flow를 통해 카페 내 현재 사람 수를 확인하세요
-              </p>
-            </div>
-          )}
-          {!isModalVisible && (
-            <div className={styles.inputContainer}>
-              <div className={styles.search_container}>
-                <input
-                  className={`${styles.search_input} ${
-                    hideUI ? styles.hideElement : ""
-                  }`}
-                />
-                <img
-                  src={line}
-                  className={`${styles.line} ${
-                    hideUI ? styles.hideElement : ""
-                  }`}
-                />
-                <img
-                  src={searchButton}
-                  className={`${styles.magnifier_icon} ${
-                    hideUI ? styles.hideElement : ""
-                  }`}
-                />
-              </div>
-            </div>
-          )}
+          <Header
+            isTestButtonClicked={isTestButtonClicked}
+            isModalVisible={isModalVisible}
+            handleUnivButtonClick={handleUnivButtonClick}
+            selectedButton={selectedButton}
+          />
         </>
       )}
       {isPc && (
@@ -465,34 +428,22 @@ const Home = ({
               : styles.buttonContainer
           }
         >
-          <button
-            style={{
-              marginRight: "10px",
-              borderRadius: "32px",
-              borderColor: selectedButton === "세종대" ? "#6156E2" : "#D7CCCB",
-            }}
-            className={styles.univButton}
-            onClick={() =>
-              handleUnivButtonClick(37.550433, 127.074055, "세종대")
-            }
-          >
-            <p className={styles.school}>세종대</p>
-          </button>
-          <button
-            style={{
-              borderRadius: "32px",
-              borderColor: selectedButton === "건국대" ? "#6156E2" : "#D7CCCB",
-            }}
-            className={styles.univButton}
-            onClick={() =>
-              handleUnivButtonClick(37.54313, 127.077501, "건국대")
-            }
-          >
-            <p className={styles.school}>건국대</p>
-          </button>
-          {isModalVisible && (
-            <div className={styles.modalBackdrop} onClick={closeModal}></div>
-          )}
+          <div className={styles.choose}>
+            <p style={{ margin: "0px" }}>공간 선택</p>
+            <hr className={styles.hr} />
+            <button className={styles.chooseButton}>
+              <p>카페</p>
+            </button>
+            <button
+              className={styles.chooseButton}
+              style={{ marginLeft: "2%" }}
+            >
+              <p>학식</p>
+            </button>
+          </div>
+          {/* {isModalVisible && (
+            // <div className={styles.modalBackdrop} onClick={closeModal}></div>
+          )} */}
         </div>
       )}
       <div
@@ -674,7 +625,7 @@ const Home = ({
                   <p style={{ margin: "0px", color: "#6156E2" }}>
                     별점 {averRating}&nbsp;
                   </p>
-                  <p style={{ margin: "0px", color: "#796262" }}>
+                  <p style={{ margin: "0px", color: "#444444" }}>
                     •&nbsp;리뷰 {reviewSize}
                   </p>
                 </div>
@@ -697,7 +648,7 @@ const Home = ({
                 <p
                   style={{
                     fontSize: "1.3em",
-                    color: "#796262",
+                    color: "#796E6E",
                     fontFamily: "ABeeZee",
                   }}
                 >
@@ -720,10 +671,10 @@ const Home = ({
                   width: "0.1vw",
                 }}
               ></img>
-              <p style={{ color: "#796262" }}>&nbsp;23:00에 영업종료</p>
+              <p style={{ color: "#444444" }}>&nbsp;23:00에 영업종료</p>
             </div>
             <div className={styles.div3}>
-              <p style={{ color: "#796262" }}>{modalData.address}</p>
+              <p style={{ color: "#444444" }}>{modalData.address}</p>
               <button
                 className={styles.copyButton}
                 onClick={copyAddressToClipboard}
