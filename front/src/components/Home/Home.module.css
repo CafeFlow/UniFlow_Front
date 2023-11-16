@@ -143,7 +143,7 @@
     align-items: center;
     width: 5vw;
     height: 1.5vh;
-    padding: 0.7vw 1vw 0.7vw 0.7vw;
+    padding: 0.7vw 1.5vw 0.7vw 0.7vw;
     background-color: white;
     border-radius: 38px;
     border: 1px solid #d7cccb;
@@ -194,7 +194,7 @@
   }
 
   .logo {
-    width: 1.8vw;
+    width: 1.5vw;
   }
 
   .logoContainer {
@@ -277,7 +277,7 @@
     z-index: 1000;
     width: 2vw;
     height: 2vw;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
   }
 
   .desktopLogo {
@@ -733,7 +733,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 15%;
+    gap: 5%;
+    padding-left: 1vw;
   }
 
   .inputContainer {
@@ -773,6 +774,47 @@
     width: 10vw; /* 돋보기 이미지의 크기를 조절 */
     height: 10vw;
     cursor: pointer; /* 돋보기 아이콘이 클릭 가능한 것처럼 보이게 함 */
+  }
+
+  .closeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    position: fixed;
+    bottom: 23vh;
+    left: calc(50vw - 10vw);
+    width: 20vw;
+    height: 5vh;
+    border-radius: 38px;
+    border: 1px solid #d7cccb;
+    background-color: white;
+    gap: 10%;
+    transition: transform 0.5s ease-in-out;
+    animation: slideIn1 0.5s forwards;
+  }
+
+  .closeContainer.expanded {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    /* position: fixed; */
+    bottom: 5vh;
+    left: calc(50vw - 10vw);
+    width: 20vw;
+    height: 5vh;
+    border-radius: 38px;
+    border: 1px solid #d7cccb;
+    background-color: white;
+    gap: 10%;
+  }
+  .close {
+    width: 4vw;
+  }
+
+  .closeLetter {
+    font-size: 1em;
   }
 
   /* Home.module.css */
@@ -821,6 +863,15 @@
     }
     to {
       transform: translateY(5%);
+    }
+  }
+
+  @keyframes slideIn1 {
+    from {
+      transform: translateY(1000%);
+    }
+    to {
+      transform: translateY(0%);
     }
   }
 
