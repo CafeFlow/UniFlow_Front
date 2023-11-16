@@ -6,11 +6,10 @@ import styles from "./Home.module.css";
 import { API_URL } from "../Constant";
 import ReviewModal from "../ReviewModal/ReviewModal";
 import InfoModal from "../InfoModal/InfoModal";
-import MobileInfoModal from "../InfoModal/MobildInfoModal";
 import seatGreen from "../icons/seatGreen.png";
 import seatRed from "../icons/seatRed.png";
 import seatYellow from "../icons/seatYellow.png";
-import searchButton from "../icons/searchButton.png";
+import close from "../icons/close.png";
 import filledGreen from "../icons/filledGreen.png";
 import filledYellow from "../icons/filledYellow.png";
 import filledRed from "../icons/filledRed.png";
@@ -19,6 +18,9 @@ import CafeFlow from "../icons/CafeFlow.png";
 import circle from "../icons/circle.png";
 import seperateLine from "../icons/seperateLine.png";
 import pen from "../icons/pen.png";
+import pan1 from "../icons/pan1.jpeg";
+import pan2 from "../icons/pan2.jpeg";
+import pan3 from "../icons/pan3.jpeg";
 import ReviewsComponent from "../ReviewsComponent/ReviewsComponent";
 
 const { kakao } = window;
@@ -61,7 +63,8 @@ const Home = ({
   // 모바일 modal에서 클릭됐을때 모달이 화면 끝까지 올라오게 함
   const [nameClicked, setNameClicked] = useState(false);
 
-  const handleNameClick = () => {
+  const handleNameClick = (e) => {
+    e.stopPropagation(); // 이벤트 버블링 방지
     setNameClicked(!nameClicked);
   };
 
@@ -174,6 +177,7 @@ const Home = ({
     console.log("modal 종료!");
     setIsModalVisible(false);
     setIsTestButtonClicked(false);
+    setNameClicked(false); // 모달을 축소하기 위해 nameClicked 상태를 false로 설정
 
     // 모달 창 종료 시 이미지와 글자색이 원래대로 돌아감
     if (activeOverlay) {
@@ -430,20 +434,25 @@ const Home = ({
         >
           <div className={styles.choose}>
             <p style={{ margin: "0px" }}>공간 선택</p>
-            <hr className={styles.hr} />
+            <img
+              src={line}
+              style={{
+                height: "2vh",
+                // margin: "0 0.5vw 0 0.5vw",
+                padding: "0 2vw 0 2vw",
+                width: "0.3vw",
+              }}
+            ></img>
             <button className={styles.chooseButton}>
               <p>카페</p>
             </button>
-            <button
+            {/* <button
               className={styles.chooseButton}
               style={{ marginLeft: "2%" }}
             >
               <p>학식</p>
-            </button>
+            </button> */}
           </div>
-          {/* {isModalVisible && (
-            // <div className={styles.modalBackdrop} onClick={closeModal}></div>
-          )} */}
         </div>
       )}
       <div
@@ -521,7 +530,14 @@ const Home = ({
           </div>
           <div className={styles.div4}>
             <p style={{ marginLeft: "2%" }}>영업 중</p>
-            <hr className={styles.hr} />
+            <img
+              src={line}
+              style={{
+                height: "2vh",
+                margin: "0 0.5vw 0 0.5vw",
+                width: "0.3vw",
+              }}
+            ></img>
             <p style={{ color: "#796262" }}>23:00에 영업종료</p>
           </div>
           <div className={styles.div3}>
@@ -595,10 +611,22 @@ const Home = ({
         cafeId={selectedCafeId}
         isOpen={modalOpen}
         onClose={closeModal2}
+        cafeName={modalData.name}
       />
 
       {isMobile && (
         <>
+          {isModalVisible && (
+            <button
+              className={`${styles.closeContainer} ${
+                nameClicked ? styles.expanded : ""
+              }`}
+              onClick={closeModal}
+            >
+              <img src={close} className={styles.close} />
+              <p className={styles.closeLetter}>닫기</p>
+            </button>
+          )}
           <div
             className={`${styles.modal} ${
               isModalVisible ? styles.visible : ""
@@ -668,7 +696,7 @@ const Home = ({
                 style={{
                   height: "2vh",
                   margin: "0 0.5vw 0 0.5vw",
-                  width: "0.1vw",
+                  width: "0.3vw",
                 }}
               ></img>
               <p style={{ color: "#444444" }}>&nbsp;23:00에 영업종료</p>

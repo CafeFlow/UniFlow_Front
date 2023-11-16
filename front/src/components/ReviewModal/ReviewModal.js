@@ -6,7 +6,7 @@ import styles from "./ReviewModal.module.css"; // 가정한 스타일시트 파�
 import close from "../icons/close.png";
 import { API_URL } from "../Constant";
 
-const ReviewModal = ({ isOpen, onClose, cafeId }) => {
+const ReviewModal = ({ isOpen, onClose, cafeId, cafeName }) => {
   const [rating, setRating] = useState(0); // 별점 상태
   const [reviewText, setReviewText] = useState(""); // 리뷰 텍스트 상태 추가
 
@@ -89,7 +89,7 @@ const ReviewModal = ({ isOpen, onClose, cafeId }) => {
         <div className={styles.about}>
           <p>
             <span style={{ fontWeight: "bold" }} className={styles.highlight}>
-              딕셔너리
+              {cafeName}
             </span>
             에 대한 별점을 남겨주세요.
             <span className={styles.highlight}>*</span>
