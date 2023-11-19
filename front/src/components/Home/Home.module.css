@@ -45,7 +45,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 5vh;
+    position: fixed;
+    top: 20vh;
+    width: 100vw;
     transition: transform 0.5s ease-in-out; /* 애니메이션 효과를 추가합니다. */
   }
 
@@ -109,16 +111,17 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 75vh;
+    height: 100%;
     gap: 5vh;
+    margin-top: -3vh;
   }
 
   .centerMap {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
-    height: 80vh;
+    width: 100%;
+    height: 100vh;
     border: 1px solid lightgray;
     border-radius: 5px;
   }
@@ -251,15 +254,16 @@
     position: fixed;
     overflow-y: scroll;
     z-index: 2;
-    top: 18%;
+    top: 20vh;
     left: 10%;
-    width: 23vw;
+    width: 25vw;
     height: 80vh;
     transition: transform 0.3s ease-out;
     transform: translateX(-150%);
     background-color: white;
-    opacity: 100%;
+    /* opacity: 100%; */
     border: 1px solid #d7cccb;
+    margin-top: -3vh;
   }
 
   .modal.visible {
@@ -1024,7 +1028,7 @@
     margin-left: 3%;
     width: 94%;
     justify-content: space-around;
-    gap: 36%;
+    gap: 35%;
   }
 
   .pen {

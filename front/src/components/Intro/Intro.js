@@ -13,7 +13,7 @@ const Intro = () => {
 
     setTimeout(() => {
       navigate("/home");
-    }, 3000);
+    }, 1000);
   }, []);
 
   return (

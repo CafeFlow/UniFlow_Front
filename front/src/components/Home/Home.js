@@ -444,6 +444,8 @@ const Home = ({
       <ReviewModal
         cafeId={selectedCafeId}
         isOpen={modalOpen}
+        openModal={openModal}
+        closeModal={closeModal}
         onClose={closeModal2}
         cafeName={modalData.name}
       />
