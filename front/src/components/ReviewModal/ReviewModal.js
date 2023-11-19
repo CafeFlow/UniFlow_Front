@@ -6,7 +6,14 @@ import styles from "./ReviewModal.module.css"; // 가정한 스타일시트 파�
 import close from "../icons/close.png";
 import { API_URL } from "../Constant";
 
-const ReviewModal = ({ isOpen, onClose, cafeId, cafeName, addReview }) => {
+const ReviewModal = ({
+  isOpen,
+  onClose,
+  cafeId,
+  cafeName,
+  openModal,
+  closeModal,
+}) => {
   const [rating, setRating] = useState(0); // 별점 상태
   const [reviewText, setReviewText] = useState(""); // 리뷰 텍스트 상태 추가
 
@@ -40,9 +47,11 @@ const ReviewModal = ({ isOpen, onClose, cafeId, cafeName, addReview }) => {
       console.log("댓글 작성 성공!");
       window.alert("댓글 작성 성공!");
       setReviewText(""); // textarea의 내용을 초기화
-      // addReview(response); // 여기서 리뷰 추가 로직 호출
       // 성공 시 모달 닫기
       handleClose();
+      // window.location.reload();
+      closeModal();
+      openModal();
     } catch (error) {
       console.error("리뷰를 전송하는 중 오류가 발생했습니다.", error);
       console.log(cafeId);
