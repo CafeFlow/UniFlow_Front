@@ -6,8 +6,8 @@ import {
   useLocation,
 } from "react-router-dom";
 import Home from "./components/Home/Home";
-import Review from "./components/Review/Review";
 import Header from "./components/Header/Header";
+import Intro from "./components/Intro/Intro";
 
 const AppContent = () => {
   const [isTestButtonClicked, setIsTestButtonClicked] = useState(false);
@@ -17,11 +17,11 @@ const AppContent = () => {
 
   return (
     <>
-      <Header isTestButtonClicked={isTestButtonClicked} location={location} />
+      {/* <Header isTestButtonClicked={isTestButtonClicked} location={location} /> */}
       <Routes>
-        {/* <Route path="/" element={<Intro />} /> */}
+        <Route path="/" element={<Intro />} />
         <Route
-          path="/"
+          path="/home"
           element={
             <Home
               setIsTestButtonClicked={setIsTestButtonClicked}

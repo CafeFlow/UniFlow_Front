@@ -19,15 +19,15 @@ const InfoModal = () => {
     <div className={styles.container}>
       <div className={styles.container2}>
         <img src={seatGreen} className={styles.seat} />
-        <p className={styles.percentage}>&nbsp;0 ~ 33%</p>
+        <p className={styles.percentage}>&nbsp;50% 이하</p>
       </div>
       <div className={styles.container2}>
         <img src={seatYellow} className={styles.seat} />
-        <p className={styles.percentage}>&nbsp;33 ~ 66%</p>
+        <p className={styles.percentage}>&nbsp;50~79%이하</p>
       </div>
       <div className={styles.container2}>
         <img src={seatRed} className={styles.seat} />
-        <p className={styles.percentage}>&nbsp;66 ~ 100%</p>
+        <p className={styles.percentage}>&nbsp;80% 이상</p>
       </div>
       <img src={close} className={styles.close} onClick={handleClose}></img>
     </div>

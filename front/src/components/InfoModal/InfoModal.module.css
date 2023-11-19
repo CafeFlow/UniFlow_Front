@@ -1,6 +1,6 @@
 @media (min-width: 768px) {
   .container {
-    width: 30%;
+    width: 25%;
     height: 5vh;
     position: fixed;
     bottom: 5vh;
@@ -62,7 +62,7 @@
   }
 
   .seat {
-    width: 5vw;
+    width: 7vw;
   }
 
   .close {
