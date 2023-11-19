@@ -23,7 +23,6 @@ const ReviewsComponent = ({ cafeId }) => {
     }
   };
 
-  // 지난 시간을 표기해주는 함수
   const timeAgo = (dateString) => {
     const now = new Date();
     const reviewDate = new Date(dateString);
@@ -32,14 +31,24 @@ const ReviewsComponent = ({ cafeId }) => {
     const diffInHours = Math.round(diffInMinutes / 60);
     const diffInDays = Math.round(diffInHours / 24);
 
-    if (diffInHours < 24) {
-      if (diffInHours === 1) return "1시간 전";
+    if (diffInHours < 1) {
+      if (diffInMinutes < 1) {
+        return "방금 전";
+      } else if (diffInMinutes === 1) {
+        return "1분 전";
+      } else {
+        return `${diffInMinutes}분 전`;
+      }
+    } else if (diffInHours < 24) {
       return `${diffInHours}시간 전`;
     } else if (diffInDays <= 7) {
-      if (diffInDays === 1) return "1일 전";
-      return `${diffInDays}일 전`;
+      if (diffInDays === 1) {
+        return "1일 전";
+      } else {
+        return `${diffInDays}일 전`;
+      }
     } else {
-      // 7일 이상이면 '2023-11-06' 형태로 표시
+      // 7일 이상이면 'YYYY-MM-DD' 형태로 표시
       return reviewDate.toLocaleDateString("ko-KR");
     }
   };
@@ -57,7 +66,7 @@ const ReviewsComponent = ({ cafeId }) => {
             <div className={styles.container2}>
               <div className={styles.flex}>
                 <div>
-                  <p className={styles.unKnown}>익명{review.id}</p>
+                  <p className={styles.unKnown}>익명{review.reviewNum}</p>
                 </div>
                 &nbsp;
                 <div>

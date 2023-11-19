@@ -21,14 +21,40 @@
   }
 }
 
-.logo {
-  animation: bounce 3s ease-in;
-  width: 10vw;
+/* 데스크탑 버전 */
+@media (min-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5%;
+    height: 90vh;
+  }
+
+  .logo {
+    width: 5vw;
+  }
+
+  .uniflow {
+    font-size: 2em;
+  }
 }
 
+/* 모바일 버전 */
 @media (max-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1%;
+    height: 85vh;
+  }
+
   .logo {
-    animation: bounce 2s ease-in;
-    width: 30vw;
+    width: 15vw;
+  }
+
+  .uniflow {
+    font-size: 2em;
   }
 }

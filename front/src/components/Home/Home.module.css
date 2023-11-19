@@ -250,6 +250,7 @@
   .modal {
     position: fixed;
     overflow-y: scroll;
+    z-index: 2;
     top: 18%;
     left: 10%;
     width: 23vw;
@@ -257,7 +258,6 @@
     transition: transform 0.3s ease-out;
     transform: translateX(-150%);
     background-color: white;
-    z-index: 1;
     opacity: 100%;
     border: 1px solid #d7cccb;
   }
@@ -415,12 +415,17 @@
     padding-right: 1vw;
     font-family: "Pretendard"; /* 원하는 폰트 패밀리로 변경 */
     font-weight: 400;
-    /* width: 6vw; */
+    width: 7vw;
+    height: 4vh;
+  }
+
+  .pen {
+    width: 2vw;
   }
 
   .makeReview {
     /* font-weight: bold; */
-    font-size: 1.1em;
+    font-size: 1em;
   }
 
   .container3 {
@@ -911,6 +916,13 @@
     padding-bottom: 2vh;
     margin-left: 4%;
     width: 92vw;
+  }
+
+  .name {
+    margin: 0px;
+    font-family: "Pretendard";
+    margin-bottom: 0.5vh;
+    font-size: 1.3em;
   }
 
   .div2 {

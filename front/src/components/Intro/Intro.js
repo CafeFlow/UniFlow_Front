@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import Header from "../Header/Header";
-import intro from "../icons/Intro.png";
+import CafeFlow from "../icons/CafeFlow.png";
 import styles from "../Intro/Intro.module.css";
 
 const Intro = () => {
@@ -18,16 +17,9 @@ const Intro = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      {/* {isHeaderVisible && <Header />} */}
-      <img src={intro} className={styles.logo}></img>
+    <div className={styles.container}>
+      <img src={CafeFlow} className={styles.logo}></img>
+      <p className={styles.uniflow}>Uni.flow</p>
     </div>
   );
 };
