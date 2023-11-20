@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Header.module.css";
 import styles1 from "../Home/Home.module.css";
+import uniflow from "../icons/Uniflow.png";
 
 const Header = ({
   isTestButtonClicked,
@@ -27,7 +28,8 @@ const Header = ({
     >
       <div style={{ display: "flex", alignItems: "center", marginLeft: "4%" }}>
         <button className={styles.button1} onClick={goHome}></button>
-        <p className={styles.cafeflowText}>Uni.flow</p>
+        {/* <p className={styles.cafeflowText}>Uni.flow</p> */}
+        <img src={uniflow} className={styles.uniflow}></img>
       </div>
       <button
         style={{
