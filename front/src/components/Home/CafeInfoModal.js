@@ -43,16 +43,16 @@ const CafeInfoModal = ({
             style={{
               fontSize: "1em",
               color:
-                modalData.count <= 15
+                modalData.count <= 30
                   ? "#00F29B"
-                  : modalData.count > 15 && modalData.count <= 31
+                  : modalData.count >= 31 && modalData.count <= 60
                   ? "#FFC85F"
                   : "#F96356",
             }}
           >
             {modalData.count}
           </p>
-          <p style={{ fontSize: "1em", color: "#796262" }}>&nbsp;/&nbsp;45</p>
+          <p style={{ fontSize: "1em", color: "#796262" }}>&nbsp;/&nbsp;100</p>
           <img
             src={seatImagePath}
             alt="Seat Status"

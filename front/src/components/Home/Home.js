@@ -40,6 +40,7 @@ const Home = ({
   const [activeTab, setActiveTab] = useState("메뉴");
   const [selectedButton, setSelectedButton] = useState("세종대");
   const [activeOverlay, setActiveOverlay] = useState(null);
+
   const [hideUI, setHideUI] = useState(false);
   const [moveUp, setMoveUp] = useState(false);
 
@@ -57,11 +58,6 @@ const Home = ({
 
   // 모바일 modal에서 클릭됐을때 모달이 화면 끝까지 올라오게 함
   const [nameClicked, setNameClicked] = useState(false);
-
-  const addReview = (newReview) => {
-    setReviews((prevReviews) => [...prevReviews, newReview]);
-    setReviewSize((prevSize) => prevSize + 1); // 리뷰 개수 업데이트
-  };
 
   const handleNameClick = (e) => {
     e.stopPropagation(); // 이벤트 버블링 방지
@@ -121,9 +117,9 @@ const Home = ({
 
   useEffect(() => {
     const getSeatImagePath = (count) => {
-      if (count <= 15) {
+      if (count <= 30) {
         return seatGreen;
-      } else if (count > 15 && count <= 31) {
+      } else if (count >= 31 && count <= 60) {
         return seatYellow;
       } else {
         return seatRed;
@@ -216,9 +212,9 @@ const Home = ({
 
         Array.from(data).forEach((element) => {
           let seatImage;
-          if (element.count <= 15) {
+          if (element.count <= 30) {
             seatImage = seatGreen;
-          } else if (element.count > 15 && element.count <= 31) {
+          } else if (element.count >= 31 && element.count <= 60) {
             seatImage = seatYellow;
           } else {
             seatImage = seatRed;
@@ -226,12 +222,12 @@ const Home = ({
 
           let borderColor;
 
-          if (element.count <= 15) {
-            borderColor = "#F96356";
-          } else if (element.count > 15 && element.count <= 31) {
+          if (element.count <= 30) {
+            borderColor = "#00F29B";
+          } else if (element.count >= 31 && element.count <= 60) {
             borderColor = "#FFC85F";
           } else {
-            borderColor = "#00F29B";
+            borderColor = "#F96356";
           }
 
           const overlayContainer = document.createElement("div");
@@ -267,10 +263,10 @@ const Home = ({
             setIsTestButtonClicked(true);
 
             // count 값에 따른 이미지와 텍스트 색상 설정
-            if (element.count <= 15) {
+            if (element.count <= 30) {
               logoImage.src = filledGreen;
               overlayContainer.style.backgroundColor = "#00F29B";
-            } else if (element.count > 15 && element.count <= 31) {
+            } else if (element.count >= 31 && element.count <= 60) {
               logoImage.src = filledYellow;
               overlayContainer.style.backgroundColor = "#FFC85F";
             } else {
