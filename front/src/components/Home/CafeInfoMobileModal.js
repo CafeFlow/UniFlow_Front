@@ -59,9 +59,9 @@ const MobileCafeModal = ({
                 fontSize: "1.3em",
                 fontFamily: "ABeeZee",
                 color:
-                  modalData.count <= 15
+                  modalData.count <= 30
                     ? "#00F29B"
-                    : modalData.count > 15 && modalData.count <= 31
+                    : modalData.count >= 31 && modalData.count <= 60
                     ? "#FFC85F"
                     : "#F96356",
               }}
@@ -75,12 +75,12 @@ const MobileCafeModal = ({
                 fontFamily: "ABeeZee",
               }}
             >
-              &nbsp;/&nbsp;45
+              &nbsp;/&nbsp;100
             </p>
             <img
               src={seatImagePath}
               alt="Seat Status"
-              style={{ height: "3vh", marginLeft: "10px" }}
+              style={{ height: "3vh", marginLeft: "1vw" }}
             />
           </div>
         </div>
