@@ -134,6 +134,10 @@
     animation: trackFade 1s ease-out;
   }
 
+  .uniflow {
+    width: 25vw;
+  }
+
   .button2 {
     width: 10vw;
     height: 5vh;
