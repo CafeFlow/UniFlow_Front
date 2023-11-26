@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import styles from "./Header.module.css";
 import styles1 from "../Home/Home.module.css";
 import uniflow from "../icons/Uniflow.png";
@@ -11,6 +12,22 @@ const Header = ({
 }) => {
   const goHome = () => {
     window.location.replace("/");
+  };
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedUniversity, setSelectedUniversity] = useState("세종대"); // Default to 세종대
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const selectUniversity = (university) => {
+    setSelectedUniversity(university);
+    setIsDropdownOpen(false);
+
+    const coordinates =
+      university === "연세대" ? [37.564572, 126.9386] : [37.550433, 127.074055];
+    handleUnivButtonClick(...coordinates, university);
   };
 
   // console.log(location); // location 객체가 정상적으로 로그에 출력되는지 확인
@@ -28,30 +45,33 @@ const Header = ({
     >
       <div style={{ display: "flex", alignItems: "center", marginLeft: "4%" }}>
         <button className={styles.button1} onClick={goHome}></button>
-        {/* <p className={styles.cafeflowText}>Uni.flow</p> */}
         <img src={uniflow} className={styles.uniflow}></img>
       </div>
-      <button
-        style={{
-          marginRight: "10px",
-          borderRadius: "32px",
-          borderColor: selectedButton === "세종대" ? "#6156E2" : "#D7CCCB",
-        }}
-        className={styles1.univButton}
-        onClick={() => handleUnivButtonClick(37.550433, 127.074055, "세종대")}
-      >
-        <p className={styles1.school}>세종대</p>
-      </button>
-      {/* <button
-        style={{
-          borderRadius: "32px",
-          borderColor: selectedButton === "건국대" ? "#6156E2" : "#D7CCCB",
-        }}
-        className={styles1.univButton}
-        onClick={() => handleUnivButtonClick(37.54313, 127.077501, "건국대")}
-      >
-        <p className={styles1.school}>건국대</p>
-      </button> */}
+      <div className={styles.dropdownContainer}>
+        <button className={styles.dropdownItem} onClick={toggleDropdown}>
+          {selectedUniversity}
+        </button>
+        {isDropdownOpen && (
+          <div className={styles.dropdownMenu}>
+            {selectedUniversity !== "세종대" && (
+              <button
+                className={styles.dropdownItem}
+                onClick={() => selectUniversity("세종대")}
+              >
+                <p>세종대</p>
+              </button>
+            )}
+            {selectedUniversity !== "연세대" && (
+              <button
+                className={styles.dropdownItem}
+                onClick={() => selectUniversity("연세대")}
+              >
+                <p>연세대</p>
+              </button>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
