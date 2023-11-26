@@ -315,7 +315,7 @@
   .modalCafeName {
     font-size: 1.3em;
     margin: 0 0 0.3vh 0;
-    font-family: "Pretendard-SemiBold", sans-serif;
+    font-family: "Pretendard-semibold", sans-serif;
   }
 
   .div2 {
@@ -628,16 +628,40 @@
     margin: 0px;
   }
 
+  .chooseContainer {
+    display: flex;
+    gap: 3%;
+  }
+
   .chooseButton {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 12vw;
+    width: 15vw;
     height: 3.5vh;
     background-color: white;
     border-radius: 38px;
     border: 1px solid #d9d9d9;
     margin: 0px;
+  }
+
+  .selectedButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15vw;
+    height: 3.5vh;
+    background-color: white;
+    border-radius: 38px;
+    border: 1px solid #d9d9d9;
+    margin: 0px;
+    border-color: #6156e2;
+  }
+
+  .chooseCategory {
+    font-family: "Pretendard", sans-serif;
+    font-weight: 600;
+    color: black;
   }
 
   .moveUp {
@@ -689,12 +713,6 @@
   .overlayContainer {
     display: flex;
     align-items: center;
-    width: 30vw; /* 너비를 조정 */
-    height: 3vh; /* 높이를 조정 */
-    padding: 2vw; /* 패딩 조정 */
-    background-color: white;
-    border-radius: 38px;
-    border: 1px solid #d7cccb;
   }
 
   .address {
@@ -714,6 +732,9 @@
     /* margin-top: 1vh; */
     /* margin-bottom: 1vh; */
     font-size: 1em;
+    font-weight: 700;
+    font-family: "Pretendard-semibold", sans-serif;
+    text-shadow: -1px 0px #fff, 0px 1px #fff, 1px 0px #fff, 0px -1px #fff;
     margin: 0px;
   }
 
@@ -740,7 +761,7 @@
 
   .logoContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     gap: 5%;
     padding-left: 1vw;

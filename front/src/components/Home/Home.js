@@ -40,6 +40,7 @@ const Home = ({
   const [activeTab, setActiveTab] = useState("메뉴");
   const [selectedButton, setSelectedButton] = useState("세종대");
   const [activeOverlay, setActiveOverlay] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("카페");
 
   const [hideUI, setHideUI] = useState(false);
   const [moveUp, setMoveUp] = useState(false);
@@ -62,6 +63,10 @@ const Home = ({
   const handleNameClick = (e) => {
     e.stopPropagation(); // 이벤트 버블링 방지
     setNameClicked(!nameClicked);
+  };
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
   };
 
   // 서버로부터 리뷰 데이터를 가져오는 함수
@@ -262,18 +267,18 @@ const Home = ({
             setActiveOverlay(overlayContainer);
             setIsTestButtonClicked(true);
 
-            // count 값에 따른 이미지와 텍스트 색상 설정
-            if (element.count <= 30) {
-              logoImage.src = filledGreen;
-              overlayContainer.style.backgroundColor = "#00F29B";
-            } else if (element.count >= 31 && element.count <= 60) {
-              logoImage.src = filledYellow;
-              overlayContainer.style.backgroundColor = "#FFC85F";
-            } else {
-              logoImage.src = filledRed;
-              overlayContainer.style.backgroundColor = "#F96356";
-            }
-            cafeName.style.color = "white";
+            // // count 값에 따른 이미지와 텍스트 색상 설정
+            // if (element.count <= 30) {
+            //   logoImage.src = filledGreen;
+            //   overlayContainer.style.backgroundColor = "#00F29B";
+            // } else if (element.count >= 31 && element.count <= 60) {
+            //   logoImage.src = filledYellow;
+            //   overlayContainer.style.backgroundColor = "#FFC85F";
+            // } else {
+            //   logoImage.src = filledRed;
+            //   overlayContainer.style.backgroundColor = "#F96356";
+            // }
+            // cafeName.style.color = "white";
           });
 
           const overlay = new kakao.maps.CustomOverlay({
@@ -405,9 +410,38 @@ const Home = ({
                   width: "0.3vw",
                 }}
               ></img>
-              <button className={styles.chooseButton}>
-                <p>카페</p>
-              </button>
+              <div className={styles.chooseContainer}>
+                <button
+                  className={
+                    selectedCategory === "카페"
+                      ? styles.selectedButton
+                      : styles.chooseButton
+                  }
+                  onClick={() => handleCategoryClick("카페")}
+                >
+                  <p className={styles.chooseCategory}>카페</p>
+                </button>
+                <button
+                  className={
+                    selectedCategory === "학식"
+                      ? styles.selectedButton
+                      : styles.chooseButton
+                  }
+                  onClick={() => handleCategoryClick("학식")}
+                >
+                  <p className={styles.chooseCategory}>학식</p>
+                </button>
+                <button
+                  className={
+                    selectedCategory === "독서실"
+                      ? styles.selectedButton
+                      : styles.chooseButton
+                  }
+                  onClick={() => handleCategoryClick("독서실")}
+                >
+                  <p className={styles.chooseCategory}>독서실</p>
+                </button>
+              </div>
             </div>
           </div>
         </>
