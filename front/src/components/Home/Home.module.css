@@ -637,8 +637,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15vw;
-    height: 3.5vh;
+    width: 17vw;
+    height: 4vh;
     background-color: white;
     border-radius: 38px;
     border: 1px solid #d9d9d9;
@@ -649,8 +649,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15vw;
-    height: 3.5vh;
+    width: 17vw;
+    height: 4vh;
     background-color: white;
     border-radius: 38px;
     border: 1px solid #d9d9d9;
@@ -662,6 +662,7 @@
     font-family: "Pretendard", sans-serif;
     font-weight: 600;
     color: black;
+    font-size: 1.2em;
   }
 
   .moveUp {
@@ -850,7 +851,7 @@
   /* Home.module.css */
   .modal {
     position: fixed;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     bottom: 0;
     left: 0;
     width: 100vw;
@@ -860,7 +861,7 @@
     transform: translateY(100%);
     transition: transform 0.5s ease-in-out;
     z-index: 1000;
-    height: 20vh;
+    height: 13vh;
     display: flex;
     flex-direction: column;
     padding-top: 2vh;
@@ -934,11 +935,12 @@
 
   .div1 {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     /* gap: 13%; */
-    border-bottom: 1px solid #efeaea;
-    padding-bottom: 2vh;
+    /* border-bottom: 1px solid #efeaea; */
+    /* padding-bottom: 2vh; */
+    margin-top: 1vh;
     margin-left: 4%;
     width: 92vw;
   }
@@ -954,7 +956,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: -1vh;
+    /* margin-top: 2vh; */
     border: 1px solid #d7cccb;
     border-radius: 38px;
     width: 30vw;
@@ -974,7 +976,7 @@
     align-items: center;
     height: 5vh;
     margin-left: 4%;
-    border-bottom: 1px solid #efeaea;
+    /* border-bottom: 1px solid #efeaea; */
     width: 92vw;
   }
 
@@ -1017,6 +1019,7 @@
 
   .seperateLine {
     width: 100%;
+    margin-top: 1vh;
   }
   .menuList {
     display: flex;

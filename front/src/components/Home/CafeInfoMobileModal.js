@@ -85,7 +85,7 @@ const MobileCafeModal = ({
           </div>
         </div>
         <div className={styles.div4}>
-          <p>영업 중&nbsp;</p>
+          <p style={{ marginTop: "1vh" }}>영업 중&nbsp;</p>
           <img
             src={line}
             style={{
@@ -94,15 +94,17 @@ const MobileCafeModal = ({
               width: "0.3vw",
             }}
           ></img>
-          <p style={{ color: "#444444" }}>&nbsp;23:00에 영업종료</p>
+          <p style={{ color: "#444444", marginTop: "1vh" }}>
+            &nbsp;23:00에 영업종료
+          </p>
         </div>
-        <div className={styles.div3}>
+        {/* <div className={styles.div3}>
           <p style={{ color: "#444444" }}>{modalData.address}</p>
           <button
             className={styles.copyButton}
             onClick={copyAddressToClipboard}
           ></button>
-        </div>
+        </div> */}
         <img src={seperateLine} className={styles.seperateLine}></img>
         <MenuListComponent
           activeTab={activeTab}

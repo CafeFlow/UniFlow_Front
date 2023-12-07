@@ -15,7 +15,7 @@ const Header = ({
   };
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedUniversity, setSelectedUniversity] = useState("세종대"); // Default to 세종대
+  const [selectedUniversity, setSelectedUniversity] = useState("연세대"); // Default to 세종대
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -26,7 +26,7 @@ const Header = ({
     setIsDropdownOpen(false);
 
     const coordinates =
-      university === "연세대" ? [37.564572, 126.9386] : [37.550433, 127.074055];
+      university === "세종대" ? [37.550433, 127.074055] : [37.564572, 126.9386];
     handleUnivButtonClick(...coordinates, university);
   };
 
@@ -49,7 +49,7 @@ const Header = ({
       </div>
       <div className={styles.dropdownContainer}>
         <button className={styles.dropdownItem} onClick={toggleDropdown}>
-          {selectedUniversity}
+          <p>{selectedUniversity}</p>
         </button>
         {isDropdownOpen && (
           <div className={styles.dropdownMenu}>
@@ -58,7 +58,7 @@ const Header = ({
                 className={styles.dropdownItem}
                 onClick={() => selectUniversity("세종대")}
               >
-                <p>세종대</p>
+                <p className={styles.font}>세종대</p>
               </button>
             )}
             {selectedUniversity !== "연세대" && (
@@ -66,7 +66,7 @@ const Header = ({
                 className={styles.dropdownItem}
                 onClick={() => selectUniversity("연세대")}
               >
-                <p>연세대</p>
+                <p className={styles.font}>연세대</p>
               </button>
             )}
           </div>
