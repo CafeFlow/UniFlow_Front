@@ -33,8 +33,8 @@ const Home = ({
   const [averRating, setAverRating] = useState(0);
   const [selectedCafeId, setSelectedCafeId] = useState(null);
   const [center, setCenter] = useState({
-    lat: 37.550433,
-    lng: 127.074055,
+    lat: 37.560836,
+    lng: 126.937171,
   });
   const [mapHeight, setMapHeight] = useState("100vh");
   const [activeTab, setActiveTab] = useState("메뉴");
@@ -67,6 +67,7 @@ const Home = ({
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    // setCenter({ lat: 37.560836, lng: 126.937171 }); // 학식 버튼 클릭 시 연세대로 좌표 변경
   };
 
   // 서버로부터 리뷰 데이터를 가져오는 함수
