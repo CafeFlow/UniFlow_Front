@@ -22,6 +22,8 @@ const MobileCafeModal = ({
   seatImagePath,
   averRating,
   reviewSize,
+  maxSeat,
+  runningTime,
 }) => {
   return (
     <>
@@ -75,7 +77,7 @@ const MobileCafeModal = ({
                 fontFamily: "ABeeZee",
               }}
             >
-              &nbsp;/&nbsp;100
+              &nbsp;/&nbsp;{modalData.maxSeat}
             </p>
             <img
               src={seatImagePath}
@@ -95,7 +97,7 @@ const MobileCafeModal = ({
             }}
           ></img>
           <p style={{ color: "#444444", marginTop: "1vh" }}>
-            &nbsp;23:00에 영업종료
+            &nbsp;{modalData.runningTime}
           </p>
         </div>
         {/* <div className={styles.div3}>
@@ -114,6 +116,7 @@ const MobileCafeModal = ({
           openModal={openModal}
           calculatedHeight={calculatedHeight}
           selectedCafeId={selectedCafeId}
+          maxSeat={maxSeat}
         />
       </div>
     </>

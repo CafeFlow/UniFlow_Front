@@ -32,6 +32,8 @@ const Home = ({
 }) => {
   const [reviews, setReviews] = useState([]); // 리뷰들을 저장할 상태
   const [reviewSize, setReviewSize] = useState(0);
+  const [maxSeat, setMaxSeat] = useState(0);
+  const [runningTime, setRunningTime] = useState(0);
   const [averRating, setAverRating] = useState(0);
   const [selectedCafeId, setSelectedCafeId] = useState(null);
   const [center, setCenter] = useState({
@@ -290,6 +292,8 @@ const Home = ({
               name: element.name,
               count: element.count,
               address: element.address,
+              maxSeat: element.maxSeat,
+              runningTime: element.runningTime,
             });
             // setIsTestButtonClicked(true);
             setActiveOverlay(overlayContainer);
@@ -528,6 +532,8 @@ const Home = ({
             seatImagePath={seatImagePath}
             averRating={averRating}
             reviewSize={reviewSize}
+            maxSeat={maxSeat}
+            runningTime={runningTime}
           />
         </>
       )}
