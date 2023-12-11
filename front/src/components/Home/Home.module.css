@@ -629,6 +629,17 @@
     margin: 0px;
   }
 
+  .KakaoChatButton {
+    width: 10vw;
+    height: 4vh;
+    background-image: url("../icons/chay48.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: white;
+    border: none;
+  }
+
   .chooseContainer {
     display: flex;
     gap: 3%;

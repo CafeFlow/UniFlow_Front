@@ -16,16 +16,9 @@ const KakaoChatButton = () => {
 
   const kakaoChat = () => {
     if (window.Kakao) {
-      console.log("Kakao SDK is loaded.");
-      try {
-        window.Kakao.Channel.chat({
-          channelPublicId: "_ibrXG", // Replace with your channel's public ID.
-        });
-      } catch (error) {
-        console.error("Error in Kakao chat:", error);
-      }
-    } else {
-      console.error("Kakao SDK is not loaded.");
+      window.Kakao.Channel.chat({
+        channelPublicId: "_ibrXG", // 여기에 채널의 고유 ID를 입력하세요.
+      });
     }
   };
 
