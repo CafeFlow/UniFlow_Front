@@ -55,7 +55,7 @@ const Home = ({
 
   const navigate = useNavigate();
   const toKakao = () => {
-    window.location.href = "http://pf.kakao.com/_ibrXG";
+    window.location.href = "http://pf.kakao.com/_ibrXG/chat";
   };
   const [seatImagePath, setSeatImagePath] = useState("");
 

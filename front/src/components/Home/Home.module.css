@@ -630,9 +630,9 @@
   }
 
   .KakaoChatButton {
-    width: 10vw;
+    width: 8vw;
     height: 4vh;
-    background-image: url("../icons/chay48.png");
+    background-image: url("../icons/chat48.png");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
