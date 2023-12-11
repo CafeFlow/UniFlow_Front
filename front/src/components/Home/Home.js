@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import Header from "../Header/Header";
 import styles from "./Home.module.css";
@@ -51,6 +52,11 @@ const Home = ({
     count: 0,
     address: "",
   });
+
+  const navigate = useNavigate();
+  const toKakao = () => {
+    window.location.href = "http://pf.kakao.com/_ibrXG";
+  };
   const [seatImagePath, setSeatImagePath] = useState("");
 
   const [showMessage, setShowMessage] = useState(true);
@@ -207,6 +213,7 @@ const Home = ({
       script.src = "https://developers.kakao.com/sdk/js/kakao.min.js";
       script.onload = () => {
         const key = process.env.REACT_APP_KAKAO_KEY;
+        console.log(process.env.REACT_APP_KAKAO_KEY);
         window.Kakao.init(key);
       };
       document.head.appendChild(script);
@@ -463,7 +470,7 @@ const Home = ({
                 </button>
               </div>
               <button
-                onClick={kakaoChat}
+                onClick={toKakao}
                 className={styles.KakaoChatButton}
               ></button>
             </div>
