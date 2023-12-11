@@ -18,6 +18,7 @@ import circle from "../icons/circle.png";
 import CafeInfoModal from "./CafeInfoModal";
 import CafeInfoMobileModal from "./CafeInfoMobileModal";
 import UnivButton from "./UnivButton";
+import KakaoChatButton from "../KakaoChatButton/KakaoChatButton";
 
 const { kakao } = window;
 
@@ -402,15 +403,14 @@ const Home = ({
             }
           >
             <div className={styles.choose}>
-              <p style={{ margin: "0px" }}>공간 선택</p>
-              <img
+              {/* <img
                 src={line}
                 style={{
                   height: "2vh",
                   padding: "0 2vw 0 2vw",
                   width: "0.3vw",
                 }}
-              ></img>
+              ></img> */}
               <div className={styles.chooseContainer}>
                 <button
                   className={
@@ -443,6 +443,7 @@ const Home = ({
                   <p className={styles.chooseCategory}>독서실</p>
                 </button>
               </div>
+              <KakaoChatButton />
             </div>
           </div>
         </>
