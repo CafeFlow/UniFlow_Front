@@ -286,19 +286,25 @@ const Home = ({
           overlayContainer.appendChild(logoContainer);
 
           overlayContainer.addEventListener("click", function () {
-            setIsModalVisible(true);
-            handleCafeClick(element.id); // id값을 넘겨주기 위해 클릭 이벤트에 ID 전달
-            setModalData({
-              name: element.name,
-              count: element.count,
-              address: element.address,
-              maxSeat: element.maxSeat,
-              runningTime: element.runningTime,
-            });
-            // setIsTestButtonClicked(true);
-            setActiveOverlay(overlayContainer);
-            setIsTestButtonClicked(true);
-
+            if (element.id === 5) {
+              alert(
+                "맛나샘은 기기 오류로 잠시동안 정보를 제공하지 않습니다. 이용에 불편함을 드려 죄송합니다. 서비스 정상화에 최선을 다하겠습니다."
+              );
+              setIsModalVisible(false);
+            } else {
+              setIsModalVisible(true);
+              handleCafeClick(element.id); // id값을 넘겨주기 위해 클릭 이벤트에 ID 전달
+              setModalData({
+                name: element.name,
+                count: element.count,
+                address: element.address,
+                maxSeat: element.maxSeat,
+                runningTime: element.runningTime,
+              });
+              // setIsTestButtonClicked(true);
+              setActiveOverlay(overlayContainer);
+              setIsTestButtonClicked(true);
+            }
             // // count 값에 따른 이미지와 텍스트 색상 설정
             // if (element.count <= 30) {
             //   logoImage.src = filledGreen;
