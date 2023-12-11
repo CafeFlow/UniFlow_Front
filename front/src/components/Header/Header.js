@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import styles1 from "../Home/Home.module.css";
 import uniflow from "../icons/Uniflow.png";
@@ -13,6 +13,8 @@ const Header = ({
   const goHome = () => {
     window.location.replace("/");
   };
+
+  // console.log(process.env.REACT_APP_KAKAO_KEY);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedUniversity, setSelectedUniversity] = useState("연세대"); // Default to 세종대
@@ -51,6 +53,7 @@ const Header = ({
         <button className={styles.dropdownItem} onClick={toggleDropdown}>
           <p>{selectedUniversity}</p>
         </button>
+
         {isDropdownOpen && (
           <div className={styles.dropdownMenu}>
             {selectedUniversity !== "세종대" && (

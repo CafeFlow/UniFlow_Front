@@ -615,7 +615,7 @@
   }
 
   .buttonContainer {
-    margin-left: 5%;
+    /* margin-left: 5%; */
     margin-top: 1vh;
     /* animation: flyAway 1.3s forwards; */
     /* transition: transform 1s ease-in-out;  */
@@ -623,8 +623,9 @@
 
   .choose {
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    /* gap: 5%; */
+    gap: 20%;
     margin: 0px;
   }
 
