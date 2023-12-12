@@ -1059,6 +1059,14 @@
     /* width: 3vw; */
   }
 
+  .tabContent {
+    display: flex;
+    margin-left: 10vw;
+    margin-top: 5vh;
+    width: 80%;
+    justify-content: center;
+  }
+
   .activeTab {
     font-weight: normal;
     font-weight: bold;

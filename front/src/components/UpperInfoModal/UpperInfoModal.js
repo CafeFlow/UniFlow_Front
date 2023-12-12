@@ -26,12 +26,19 @@ const UpperInfoModal = () => {
       }}
     >
       <div style={{ display: "flex", alignItems: "center" }}>
-        <img src={circle} style={{ width: "6vw", height: "auto" }} />
-        <p style={{ marginLeft: "2vw" }}>아이콘을 눌러 인원수를 확인하세요!</p>
+        <img src={circle} style={{ width: "5vw", height: "auto" }} />
+        <p
+          style={{
+            marginLeft: "2vw",
+            fontWeight: "bold",
+          }}
+        >
+          아이콘을 눌러 인원수를 확인하세요!
+        </p>
       </div>
       <img
         src={closeicon}
-        style={{ width: "auto", height: "3vh" }}
+        style={{ width: "auto", height: "2vh" }}
         onClick={handleClose}
       />
     </div>

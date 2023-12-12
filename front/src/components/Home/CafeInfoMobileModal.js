@@ -14,7 +14,6 @@ const MobileCafeModal = ({
   modalData,
   handleNameClick,
   activeTab,
-  copyAddressToClipboard,
   handleTabClick,
   openModal,
   calculatedHeight,
@@ -23,7 +22,7 @@ const MobileCafeModal = ({
   averRating,
   reviewSize,
   maxSeat,
-  runningTime,
+  notice,
 }) => {
   return (
     <>
@@ -61,9 +60,10 @@ const MobileCafeModal = ({
                 fontSize: "1.3em",
                 fontFamily: "ABeeZee",
                 color:
-                  modalData.count <= 30
+                  modalData.count <= modalData.maxSeat * 0.3
                     ? "#00F29B"
-                    : modalData.count >= 31 && modalData.count <= 60
+                    : modalData.count >= modalData.maxSeat * 0.31 &&
+                      modalData.count <= modalData.maxSeat * 0.6
                     ? "#FFC85F"
                     : "#F96356",
               }}
@@ -117,6 +117,7 @@ const MobileCafeModal = ({
           calculatedHeight={calculatedHeight}
           selectedCafeId={selectedCafeId}
           maxSeat={maxSeat}
+          notice={notice}
         />
       </div>
     </>

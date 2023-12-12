@@ -13,11 +13,12 @@ const MenuListComponent = ({
   openModal,
   calculatedHeight,
   selectedCafeId,
+  notice,
 }) => {
   return (
     <div>
       <div className={styles.menuList}>
-        {["메뉴", "리뷰", "사진", "정보"].map((tab) => (
+        {["공지", "리뷰", "사진", "정보"].map((tab) => (
           <button
             key={tab}
             onClick={() => handleTabClick(tab)}
@@ -33,7 +34,9 @@ const MenuListComponent = ({
         ))}
       </div>
       <div className={styles.tabContent}>
-        {activeTab === "메뉴" && <div>서비스 준비 중입니다..</div>}
+        {activeTab === "공지" && (
+          <p style={{ fontWeight: "500", fontSize: "1.2em" }}>{notice}</p>
+        )}
         {activeTab === "리뷰" && (
           <div>
             <div className={styles.flex1}>
