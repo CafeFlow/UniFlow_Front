@@ -13,13 +13,14 @@ import seatYellow from "../icons/seatYellow.png";
 import filledGreen from "../icons/filledGreen.png";
 import filledYellow from "../icons/filledYellow.png";
 import filledRed from "../icons/filledRed.png";
-import line from "../icons/line.png";
+import closeicon from "../icons/close.png";
 import CafeFlow from "../icons/CafeFlow.png";
 import circle from "../icons/circle.png";
 import CafeInfoModal from "./CafeInfoModal";
 import CafeInfoMobileModal from "./CafeInfoMobileModal";
 import UnivButton from "./UnivButton";
 import KakaoChatButton from "../KakaoChatButton/KakaoChatButton";
+import UpperInfoModal from "../UpperInfoModal/UpperInfoModal";
 
 const { kakao } = window;
 
@@ -45,7 +46,7 @@ const Home = ({
   const [selectedButton, setSelectedButton] = useState("세종대");
   const [activeOverlay, setActiveOverlay] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("카페");
-
+  const [isclose1, setIsClose1] = useState(true);
   const [hideUI, setHideUI] = useState(false);
   const [moveUp, setMoveUp] = useState(false);
 
@@ -62,6 +63,10 @@ const Home = ({
   const [seatImagePath, setSeatImagePath] = useState("");
 
   const [showMessage, setShowMessage] = useState(true);
+
+  const handleClose = () => {
+    setIsClose1(false);
+  };
 
   // 리뷰 작성 modal 열고 닫기
   const [modalOpen, setModalOpen] = useState(false);
@@ -497,6 +502,7 @@ const Home = ({
             : styles.bigContainer
         }
       >
+        <UpperInfoModal />
         <div className={styles.container}>
           {/* <div className={styles.leftAd}>광고</div> */}
           <div id="map" className={styles.centerMap}></div>
