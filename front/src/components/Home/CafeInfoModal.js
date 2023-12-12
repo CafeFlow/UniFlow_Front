@@ -19,6 +19,7 @@ const CafeInfoModal = ({
   openModal,
   calculatedHeight,
   selectedCafeId,
+  notice,
 }) => {
   return (
     <div className={`${styles.modal} ${isModalVisible ? styles.visible : ""}`}>
@@ -91,6 +92,7 @@ const CafeInfoModal = ({
         openModal={openModal}
         calculatedHeight={calculatedHeight}
         selectedCafeId={selectedCafeId}
+        notice={notice}
       />
     </div>
   );

@@ -13,13 +13,11 @@ import seatYellow from "../icons/seatYellow.png";
 import filledGreen from "../icons/filledGreen.png";
 import filledYellow from "../icons/filledYellow.png";
 import filledRed from "../icons/filledRed.png";
-import closeicon from "../icons/close.png";
 import CafeFlow from "../icons/CafeFlow.png";
 import circle from "../icons/circle.png";
 import CafeInfoModal from "./CafeInfoModal";
 import CafeInfoMobileModal from "./CafeInfoMobileModal";
 import UnivButton from "./UnivButton";
-import KakaoChatButton from "../KakaoChatButton/KakaoChatButton";
 import UpperInfoModal from "../UpperInfoModal/UpperInfoModal";
 
 const { kakao } = window;
@@ -36,13 +34,14 @@ const Home = ({
   const [maxSeat, setMaxSeat] = useState(0);
   const [runningTime, setRunningTime] = useState(0);
   const [averRating, setAverRating] = useState(0);
+  const [notice, setNotice] = useState([]);
   const [selectedCafeId, setSelectedCafeId] = useState(null);
   const [center, setCenter] = useState({
     lat: 37.560836,
     lng: 126.937171,
   });
   const [mapHeight, setMapHeight] = useState("100vh");
-  const [activeTab, setActiveTab] = useState("메뉴");
+  const [activeTab, setActiveTab] = useState("공지");
   const [selectedButton, setSelectedButton] = useState("세종대");
   const [activeOverlay, setActiveOverlay] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("카페");
@@ -54,6 +53,7 @@ const Home = ({
     name: "",
     count: 0,
     address: "",
+    maxSeat: 0,
   });
 
   const navigate = useNavigate();
@@ -91,6 +91,7 @@ const Home = ({
       setReviews(response.data.reviewList); // 상태에 리뷰 데이터 저장
       setReviewSize(response.data.reviewSize); // 리뷰 개수 상태 저장
       setAverRating(response.data.averRating); // 평균 평점 상태 저장
+      setNotice(response.data.notice);
       console.log(response.data);
     } catch (error) {
       // console.error("리뷰를 가져오는 중 오류가 발생했습니다", error);
@@ -137,11 +138,11 @@ const Home = ({
 
   useEffect(() => {
     const getSeatImagePath = (count) => {
-      if (count <= 30) {
+      if (count <= maxSeat * 0.3) {
         return seatGreen;
-      } else if (count >= 31 && count <= 60) {
+      } else if (count >= maxSeat * 0.31 && count <= maxSeat * 0.6) {
         return seatYellow;
-      } else {
+      } else if (count >= maxSeat * 0.61) {
         return seatRed;
       }
     };
@@ -220,7 +221,7 @@ const Home = ({
       script.src = "https://developers.kakao.com/sdk/js/kakao.min.js";
       script.onload = () => {
         const key = process.env.REACT_APP_KAKAO_KEY;
-        console.log(process.env.REACT_APP_KAKAO_KEY);
+        // console.log(process.env.REACT_APP_KAKAO_KEY);
         window.Kakao.init(key);
       };
       document.head.appendChild(script);
@@ -252,19 +253,26 @@ const Home = ({
 
         Array.from(data).forEach((element) => {
           let seatImage;
-          if (element.count <= 30) {
+          console.log(element.maxSeat);
+          if (element.count <= element.maxSeat * 0.3) {
             seatImage = seatGreen;
-          } else if (element.count >= 31 && element.count <= 60) {
+          } else if (
+            element.count >= element.maxSeat * 0.31 &&
+            element.count <= element.maxSeat * 0.6
+          ) {
             seatImage = seatYellow;
-          } else {
+          } else if (element.count >= element.maxSeat * 0.61) {
             seatImage = seatRed;
           }
 
           let borderColor;
 
-          if (element.count <= 30) {
+          if (element.count <= element.maxSeat * 0.6) {
             borderColor = "#00F29B";
-          } else if (element.count >= 31 && element.count <= 60) {
+          } else if (
+            element.count >= element.maxSeat * 0.31 &&
+            element.count <= element.maxSeat * 0.6
+          ) {
             borderColor = "#FFC85F";
           } else {
             borderColor = "#F96356";
@@ -310,18 +318,6 @@ const Home = ({
               setActiveOverlay(overlayContainer);
               setIsTestButtonClicked(true);
             }
-            // // count 값에 따른 이미지와 텍스트 색상 설정
-            // if (element.count <= 30) {
-            //   logoImage.src = filledGreen;
-            //   overlayContainer.style.backgroundColor = "#00F29B";
-            // } else if (element.count >= 31 && element.count <= 60) {
-            //   logoImage.src = filledYellow;
-            //   overlayContainer.style.backgroundColor = "#FFC85F";
-            // } else {
-            //   logoImage.src = filledRed;
-            //   overlayContainer.style.backgroundColor = "#F96356";
-            // }
-            // cafeName.style.color = "white";
           });
 
           const overlay = new kakao.maps.CustomOverlay({
@@ -423,6 +419,7 @@ const Home = ({
           selectedCafeId={selectedCafeId}
           nameClicked={nameClicked}
           handleNameClick={handleNameClick}
+          notice={notice}
         />
       )}
 
@@ -546,6 +543,7 @@ const Home = ({
             reviewSize={reviewSize}
             maxSeat={maxSeat}
             runningTime={runningTime}
+            notice={notice}
           />
         </>
       )}
