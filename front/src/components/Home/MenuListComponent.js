@@ -35,7 +35,9 @@ const MenuListComponent = ({
       </div>
       <div className={styles.tabContent}>
         {activeTab === "공지" && (
-          <p style={{ fontWeight: "500", fontSize: "1.2em" }}>{notice}</p>
+          <div>
+            <p>{notice}</p>
+          </div>
         )}
         {activeTab === "리뷰" && (
           <div>

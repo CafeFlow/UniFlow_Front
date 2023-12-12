@@ -138,11 +138,16 @@ const Home = ({
 
   useEffect(() => {
     const getSeatImagePath = (count) => {
-      if (count <= maxSeat * 0.3) {
+      // console.log(count.cafeId + "의 현재 count는 " + count + "입니다");
+      console.log(count, modalData.maxSeat);
+      if (count <= modalData.maxSeat * 0.3) {
         return seatGreen;
-      } else if (count >= maxSeat * 0.31 && count <= maxSeat * 0.6) {
+      } else if (
+        count >= modalData.maxSeat * 0.31 &&
+        count <= modalData.maxSeat * 0.6
+      ) {
         return seatYellow;
-      } else if (count >= maxSeat * 0.61) {
+      } else if (count >= modalData.maxSeat * 0.61) {
         return seatRed;
       }
     };
